@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace ModuloPower
 {
@@ -8,9 +9,9 @@ namespace ModuloPower
         {
             try
             {
-                Console.WriteLine("Result is {0}", CryptoTools.ModuloPower(2, 8, 10));
+                Console.WriteLine("Result is {0}", CryptoTools.ModuloPower(3, 3, 10));
             }
-            catch(ArgumentException e)
+            catch (ArgumentException e)
             {
                 Console.WriteLine("Error: {0}", e.Message);
             }

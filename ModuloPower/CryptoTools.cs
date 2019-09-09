@@ -29,5 +29,15 @@ namespace ModuloPower
             }
             return result;
         }
+
+        public static BigInteger GenerateDiffieHellmanPrivateKey(BigInteger g, BigInteger p)
+        {
+            //в тетради g^S mod p, но какая разница, если число из того же диапазона? g - примитивный элемент по условию?
+            //todo: подумать
+            Random r = new Random();
+            int s = r.Next(0, (int)p);
+
+            return ModuloPower(g, s, p);
+        }
     }
 }
