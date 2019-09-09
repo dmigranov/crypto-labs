@@ -10,6 +10,8 @@ namespace ModuloPower
         //System.Numerics.BigInteger ModPow
         public static BigInteger ModuloPower(BigInteger val, BigInteger exp, BigInteger mod)
         {
+            if (exp < 0 || mod < 0)
+                throw new ArgumentException("Negative modulo or exponent");
             BigInteger rem, result = 1, cur = val;
             while(exp > 0)
             {
