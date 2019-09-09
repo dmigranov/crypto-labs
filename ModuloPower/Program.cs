@@ -6,7 +6,8 @@ namespace ModuloPower
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Result is {0}", CryptoTools.ModuloPower(2, 8, 10));
+            
         }
     }
 }
