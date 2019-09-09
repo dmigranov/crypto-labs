@@ -8,7 +8,7 @@ namespace ModuloPower
         {
             try
             {
-                Console.WriteLine("Result is {0}", CryptoTools.ModuloPower(2, 0, 10));
+                Console.WriteLine("Result is {0}", CryptoTools.ModuloPower(2, 8, 10));
             }
             catch(ArgumentException e)
             {
