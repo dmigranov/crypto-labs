@@ -39,5 +39,10 @@ namespace ModuloPower
 
             return ModuloPower(g, s, p);
         }
+
+        public static BigInteger GenerateDiffieHellmanPublicKey(BigInteger g, BigInteger privateKey, BigInteger p)
+        {
+            return 0;
+        }
     }
 }
