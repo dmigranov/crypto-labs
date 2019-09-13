@@ -27,7 +27,7 @@ namespace ModuloPower
             }
             else Console.WriteLine("No arguments, p = 30803, g = 2 will be used");
 
-            SimulateDiffieHellmanKeyExchange(p, g);
+            SimulateDiffieHellmanExchange(p, g);
 
         }
 
