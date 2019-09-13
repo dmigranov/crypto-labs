@@ -31,7 +31,7 @@ namespace ModuloPower
 
         }
 
-        private static void SimulateDiffieHellmanKeyExchange(BigInteger p, BigInteger g)
+        private static void SimulateDiffieHellmanExchange(BigInteger p, BigInteger g)
         {
             Console.WriteLine("Alice starts exchange");
 
@@ -45,9 +45,11 @@ namespace ModuloPower
             BigInteger yB = CryptoTools.GenerateDiffieHellmanPublicKey(g, xB, p);
             Console.WriteLine("Bob generated public key yB = {0} and sent it to Alice", yB);
 
+            BigInteger zAB = CryptoTools.ModuloPower(yB, xA, p);
+            Console.WriteLine($"Alice calculated zAB = {zAB} - common private key");
 
-
-
+            BigInteger zBA = CryptoTools.ModuloPower(yA, xB, p);
+            Console.WriteLine($"Alice calculated zBA = {zAB} - common private key");
         }
     }
 }
