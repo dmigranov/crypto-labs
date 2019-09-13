@@ -17,5 +17,10 @@ namespace ModuloPower
             }
             
         }
+
+        private void SimulateDiffieHellmanKeyExchange(BigInteger p, BigInteger g)
+        {
+
+        }
     }
 }
