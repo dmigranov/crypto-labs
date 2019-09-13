@@ -33,12 +33,12 @@ namespace ModuloPower
         public static BigInteger GenerateDiffieHellmanPrivateKey(BigInteger g, BigInteger p)
         {
             //в тетради g^S mod p, но какая разница, если число из того же диапазона? g - примитивный элемент по условию?
-            //todo: подумать
             //таким образом, g^s из того же диапазона
             //а просто так генерировать случайные BigInt мы не умеем...
             Random r = new Random();
             int s = r.Next(0, (int)p);
 
+            //todo: генерировать просто случайное БОЛЬШОе число (необяз. из  диапазона)
             return ModuloPower(g, s, p);
         }
 
