@@ -16,11 +16,15 @@ namespace ModuloPower
                 Console.WriteLine("Error: {0}", e.Message);
             }*/
 
-            BigInteger p, g;
+            BigInteger p = 30803, g = 2;
 
             if(args.Length < 2)
             {
-                p = 
+                if (args.Length == 0)
+                {
+                    p = 30803;
+                    s
+                }
             }
             
         }
