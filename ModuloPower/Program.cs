@@ -7,19 +7,33 @@ namespace ModuloPower
     {
         static void Main(string[] args)
         {
-            try
+            /*try
             {
-                Console.WriteLine("Result is {0}", CryptoTools.ModuloPower(3, 3, 10));
+                //Console.Re
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine("Error: {0}", e.Message);
+            }*/
+
+            BigInteger p, g;
+
+            if(args.Length < 2)
+            {
+                p = 
             }
             
         }
 
         private void SimulateDiffieHellmanKeyExchange(BigInteger p, BigInteger g)
         {
+            Console.WriteLine("Alice starts exchange");
+
+            BigInteger xA = CryptoTools.GenerateDiffieHellmanPrivateKey(g, p);
+            Console.WriteLine("Alice generated private key {0}", xA);
+            BigInteger yA = CryptoTools.GenerateDiffieHellmanPublicKey(g, xA, p);
+            Console.WriteLine("Alice generated public key {0}", yA);
+
 
         }
     }
