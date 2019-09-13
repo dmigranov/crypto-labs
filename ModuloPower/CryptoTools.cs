@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
-namespace ModuloPower
+namespace Crypto
 {
     class CryptoTools
     {
@@ -36,9 +36,8 @@ namespace ModuloPower
             //таким образом, g^s из того же диапазона
             //а просто так генерировать случайные BigInt мы не умеем...
             Random r = new Random();
-            int s = r.Next(1, (int)p);
+            int s = r.Next(0, (int)p);
 
-            //todo: генерировать просто случайное БОЛЬШОе число (необяз. из  диапазона) впо нормальному
             return ModuloPower(g, s, p);
         }
 
@@ -46,7 +45,5 @@ namespace ModuloPower
         {
             return ModuloPower(g, privateKey, p);
         }
-
-
     }
 }

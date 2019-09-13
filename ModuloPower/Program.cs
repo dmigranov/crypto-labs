@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace ModuloPower
+namespace Crypto
 {
     class Program
     {
@@ -28,6 +28,8 @@ namespace ModuloPower
             else Console.WriteLine("No arguments, p = 30803, g = 2 will be used");
 
             SimulateDiffieHellmanExchange(p, g);
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
 
         }
 
