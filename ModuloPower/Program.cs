@@ -7,15 +7,6 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            /*try
-            {
-                //Console.Re
-            }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine("Error: {0}", e.Message);
-            }*/
-
             BigInteger p = 30803, g = 2;
 
             if(args.Length > 0)
@@ -51,7 +42,7 @@ namespace Crypto
             Console.WriteLine($"Alice calculated zAB = {zAB} - common private key");
 
             BigInteger zBA = CryptoTools.ModuloPower(yA, xB, p);
-            Console.WriteLine($"Alice calculated zBA = {zAB} - common private key");
+            Console.WriteLine($"Bob calculated zBA = {zBA} - common private key");
         }
     }
 }
