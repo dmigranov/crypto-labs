@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiffieHellman", "ModuloPower\DiffieHellman.csproj", "{CEA7FAA5-85E3-4A57-8048-C31019989722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiffieHellman", "DiffieHellman\DiffieHellman.csproj", "{CEA7FAA5-85E3-4A57-8048-C31019989722}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
