@@ -34,6 +34,8 @@ namespace Crypto
                 b = t;
             }
 
+
+
             return 0;
         }
 

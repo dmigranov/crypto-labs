@@ -11,6 +11,18 @@ namespace Crypto
             Console.WriteLine($"{a} {b}");
             CryptoTools.EuclidAlgorithm(a, b, out x, out y);
             Console.WriteLine($"{a} {b}");
+
+
+            BigInteger p;
+            string pString;
+
+            if (args.Length == 0)
+            {
+                Console.WriteLine("No arguments, please enter p");
+                pString = Console.ReadLine();
+            }
+            else pString = args[0];
+
         }
 
 
