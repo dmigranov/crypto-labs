@@ -9,12 +9,19 @@ namespace Crypto
         public static void GenerateShamirPrivateKeys(BigInteger p, out BigInteger c, out BigInteger d)
         {
             Random r = new Random();
-            BigInteger cCandidate;
+            BigInteger cCandidate, dCandidate, ret;
             do
             {
-                cCandidate = r.Next(0, int.MaxValue);
-                CryptoTools.EuclidAlgorithm();
-            }
+                BigInteger temp;
+                cCandidate = r.Next(1, (int)p);
+                ret = CryptoTools.EuclidAlgorithm(p - 1, cCandidate, out temp, out dCandidate);
+            } while (ret != 1);
+            c = cCandidate;
+            if (dCandidate < 0)
+                dCandidate += (p - 1);
+            d = dCandidate;
+
+            //1 взаимно проста со всеми числами и 1 * 1 = 1. Это нормально?
         }
     }
 }

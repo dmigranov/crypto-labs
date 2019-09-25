@@ -7,10 +7,6 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            BigInteger x, y, a = 12, b = 7, r;
-            r = CryptoTools.EuclidAlgorithm(a, b, out x, out y);
-            Console.WriteLine($"{x} {y} r = {r}");
-
             string pString;
 
             if (args.Length == 0)
@@ -40,7 +36,9 @@ namespace Crypto
         private static void SimulateShamirExchange(BigInteger p)
         {
             BigInteger cA, dA, cB, dB;
+            ShamirTools.GenerateShamirPrivateKeys(p, out cA, out dA);
 
+            Console.WriteLine($"{cA} {dA}");
         }
 
     }
