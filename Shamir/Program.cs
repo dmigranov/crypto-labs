@@ -7,10 +7,9 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            BigInteger x, y, a = 4, b = 7;
-            Console.WriteLine($"{a} {b}");
-            CryptoTools.EuclidAlgorithm(a, b, out x, out y);
-            Console.WriteLine($"{a} {b}");
+            BigInteger x, y, a = 12, b = 7, r;
+            r = CryptoTools.EuclidAlgorithm(a, b, out x, out y);
+            Console.WriteLine($"{x} {y} r = {r}");
 
             string pString;
 

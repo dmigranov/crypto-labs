@@ -24,7 +24,7 @@ namespace Crypto
             return result;
         }
 
-        public static object EuclidAlgorithm(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
+        public static BigInteger EuclidAlgorithm(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
         {
             if (b > a)
             {
@@ -34,26 +34,24 @@ namespace Crypto
                 b = t;
             }
 
-
-
             Triplet prev = new Triplet(a, 1, 0);
             Triplet cur = new Triplet(b, 0, 1);
             Triplet temp;
 
-
-            while(true)
+            while(cur.X != 0)
             {
                 temp = cur;
-                cur = prev - (cur.X % prev.X) * cur;
+                cur = prev - (prev.X / cur.X) * cur;
+                prev = temp;
             }
 
-
-            return 0;
+            x = prev.Y;
+            y = prev.Z;
+            return prev.X;
         }
 
         private struct Triplet
         {
-
             public BigInteger X { get; set; }
             public BigInteger Y { get; set; }
             public BigInteger Z { get; set; }
@@ -72,7 +70,6 @@ namespace Crypto
             {
                 return new Triplet(a.X * k, a.Y * k, a.Z * k);
             }
-
             public static Triplet operator *(Triplet a, BigInteger k)
             {
                 return new Triplet(a.X * k, a.Y * k, a.Z * k);
