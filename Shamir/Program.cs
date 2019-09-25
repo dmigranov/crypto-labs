@@ -39,6 +39,7 @@ namespace Crypto
 
         private static void SimulateShamirExchange(BigInteger p)
         {
+            BigInteger cA, dA, cB, dB;
 
         }
 
