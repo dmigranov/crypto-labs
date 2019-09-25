@@ -38,7 +38,14 @@ namespace Crypto
 
             Triplet prev = new Triplet(a, 1, 0);
             Triplet cur = new Triplet(b, 0, 1);
-            cur = cur - prev;
+            Triplet temp;
+
+
+            while(true)
+            {
+                temp = cur;
+                cur = prev - (cur.X % prev.X) * cur;
+            }
 
 
             return 0;
@@ -60,6 +67,15 @@ namespace Crypto
             public static Triplet operator -(Triplet a, Triplet b)
             {
                 return new Triplet(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+            }
+            public static Triplet operator *(BigInteger k, Triplet a)
+            {
+                return new Triplet(a.X * k, a.Y * k, a.Z * k);
+            }
+
+            public static Triplet operator *(Triplet a, BigInteger k)
+            {
+                return new Triplet(a.X * k, a.Y * k, a.Z * k);
             }
         }
 
