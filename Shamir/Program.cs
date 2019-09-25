@@ -12,8 +12,6 @@ namespace Crypto
             CryptoTools.EuclidAlgorithm(a, b, out x, out y);
             Console.WriteLine($"{a} {b}");
 
-
-            BigInteger p;
             string pString;
 
             if (args.Length == 0)
@@ -22,6 +20,20 @@ namespace Crypto
                 pString = Console.ReadLine();
             }
             else pString = args[0];
+
+            try
+            {
+                BigInteger p = BigInteger.Parse(pString);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+            
+
+
 
         }
 
