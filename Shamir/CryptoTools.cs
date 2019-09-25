@@ -26,7 +26,14 @@ namespace Crypto
 
         public static BigInteger EuclidAlgorithm(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
         {
-            x = 45;
+            if (b > a)
+            {
+                BigInteger t;
+                t = a;
+                a = b;
+                b = t;
+            }
+
             return 0;
         }
 
