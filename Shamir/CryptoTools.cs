@@ -24,7 +24,7 @@ namespace Crypto
             return result;
         }
 
-        public static BigInteger EuclidAlgorithm(BigInteger a, BigInteger b, ref BigInteger x, ref BigInteger y)
+        public static BigInteger EuclidAlgorithm(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
         {
             x = 45;
             return 0;

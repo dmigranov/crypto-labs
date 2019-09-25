@@ -7,8 +7,8 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            BigInteger x, y, a = 0, b;
-            CryptoTools.EuclidAlgorithm(a, b, ref x, ref y);
+            BigInteger x, y, a, b;
+            CryptoTools.EuclidAlgorithm(a, b, out x, out y);
             Console.WriteLine(x);
         }
 
