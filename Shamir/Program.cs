@@ -20,22 +20,27 @@ namespace Crypto
             }
             else pString = args[0];
 
+            BigInteger p;
             try
             {
-                BigInteger p = BigInteger.Parse(pString);
+                p = BigInteger.Parse(pString);
+                SimulateShamirExchange(p);
             }
             catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
             }
 
-
-            
-
-
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
 
         }
 
+
+        private static void SimulateShamirExchange(BigInteger p)
+        {
+
+        }
 
     }
 }
