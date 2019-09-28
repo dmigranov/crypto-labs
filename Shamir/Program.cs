@@ -51,7 +51,7 @@ namespace Crypto
                 {
                     x = BigInteger.Parse(s);
                 }
-                catch (FormatException e)
+                catch (FormatException)
                 {
                     x = -1;
                 }
@@ -59,6 +59,18 @@ namespace Crypto
             while (x < 0 || x >= p);
 
             Console.WriteLine($"Message is {x}");
+
+            BigInteger y = CryptoTools.ModuloPower(x, cA, p);
+            Console.WriteLine($"Alice calculated y = {y} and sent it to Bob");
+
+            BigInteger z = CryptoTools.ModuloPower(y, cB, p);
+            Console.WriteLine($"Bob calculated z = {z} and sent it to Alice");
+
+            BigInteger u = CryptoTools.ModuloPower(z, dA, p);
+            Console.WriteLine($"Alice calculated u = {u} and sent it to Bob");
+
+            BigInteger w = CryptoTools.ModuloPower(u, dB, p);
+            Console.WriteLine($"Bob calculated w = {w}");
         }
 
     }
