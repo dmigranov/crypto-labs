@@ -17,7 +17,7 @@ namespace Crypto
                 BigInteger temp;
                 cCandidate = r.Next(1, (int)p);
                 ret = CryptoTools.EuclidAlgorithm(p - 1, cCandidate, out temp, out dCandidate);
-            } while (ret != 1); //крутимся пока не найдём такое c: (c, p - 1) = 1. тогда d обратное к c
+            } while (ret != 1); //крутимся пока не найдём такое cCandidate: (cCandidate, p - 1) = 1. тогда dCandidate обратное к cCandidate с точностью до модуля
             c = cCandidate;
             if (dCandidate < 0)
                 dCandidate += (p - 1);
