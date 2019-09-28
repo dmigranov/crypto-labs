@@ -29,7 +29,6 @@ namespace Crypto
 
             Console.Write("Press any key to exit: ");
             Console.ReadKey();
-
         }
 
 
@@ -72,6 +71,5 @@ namespace Crypto
             BigInteger w = CryptoTools.ModuloPower(u, dB, p);
             Console.WriteLine($"Bob calculated w = {w}");
         }
-
     }
 }

@@ -75,6 +75,5 @@ namespace Crypto
                 return new Triplet(a.X * k, a.Y * k, a.Z * k);
             }
         }
-
     }
 }

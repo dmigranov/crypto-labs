@@ -6,8 +6,6 @@ namespace Crypto
 {
     class ShamirTools
     {
-     
-        
         public static void GenerateShamirPrivateKeys(BigInteger p, out BigInteger c, out BigInteger d)
         {
             Random r = new Random();
