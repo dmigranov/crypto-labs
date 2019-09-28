@@ -11,7 +11,7 @@ namespace Crypto
 
             if (args.Length == 0)
             {
-                Console.WriteLine("No arguments, please enter p");
+                Console.WriteLine("No arguments, please enter prime number p:");
                 pString = Console.ReadLine();
             }
             else pString = args[0];
