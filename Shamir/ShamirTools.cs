@@ -6,6 +6,8 @@ namespace Crypto
 {
     class ShamirTools
     {
+     
+        
         public static void GenerateShamirPrivateKeys(BigInteger p, out BigInteger c, out BigInteger d)
         {
             Random r = new Random();
@@ -15,13 +17,11 @@ namespace Crypto
                 BigInteger temp;
                 cCandidate = r.Next(1, (int)p);
                 ret = CryptoTools.EuclidAlgorithm(p - 1, cCandidate, out temp, out dCandidate);
-            } while (ret != 1);
+            } while (ret != 1); //крутимся пока не найдём такое c: (c, p - 1) = 1. тогда d обратное к c
             c = cCandidate;
             if (dCandidate < 0)
                 dCandidate += (p - 1);
             d = dCandidate;
-
-            //1 взаимно проста со всеми числами и 1 * 1 = 1. Это нормально?
         }
     }
 }

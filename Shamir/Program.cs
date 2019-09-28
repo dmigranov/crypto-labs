@@ -37,8 +37,28 @@ namespace Crypto
         {
             BigInteger cA, dA, cB, dB;
             ShamirTools.GenerateShamirPrivateKeys(p, out cA, out dA);
+            Console.WriteLine($"Alice generated private keys cA = {cA}, dA = {dA}");
+            ShamirTools.GenerateShamirPrivateKeys(p, out cB, out dB);
+            Console.WriteLine($"Bob generated private keys cB = {cB}, dB = {dB}");
 
-            Console.WriteLine($"{cA} {dA}");
+            BigInteger x = -1;
+
+            do
+            {
+                Console.WriteLine("Please enter message, x < p");
+                string s = Console.ReadLine();
+                try
+                {
+                    x = BigInteger.Parse(s);
+                }
+                catch (FormatException e)
+                {
+                    x = -1;
+                }
+            }
+            while (x < 0 || x >= p);
+
+            Console.WriteLine($"Message is {x}");
         }
 
     }
