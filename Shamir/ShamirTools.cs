@@ -21,5 +21,14 @@ namespace Crypto
                 dCandidate += (p - 1);
             d = dCandidate;
         }
+
+        public static BigInteger GenerateShamirPrivateKeyUsingAnother(BigInteger p, BigInteger c)
+        {
+            BigInteger temp, d, ret = CryptoTools.EuclidAlgorithm(p - 1, c, out temp, out d);
+            if (d < 0)
+                d += (p - 1);
+            return d;
+            
+        }
     }
 }

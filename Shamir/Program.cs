@@ -20,7 +20,8 @@ namespace Crypto
             try
             {
                 p = BigInteger.Parse(pString);
-                SimulateShamirExchange(p);
+                //SimulateShamirExchange(p);
+                SimulateShamirExchange(p, 15, 7, 6);
             }
             catch (FormatException e)
             {
@@ -71,5 +72,35 @@ namespace Crypto
             BigInteger w = CryptoTools.ModuloPower(u, dB, p);
             Console.WriteLine($"Bob calculated w = {w}");
         }
+
+        private static void SimulateShamirExchange(BigInteger p, BigInteger cA, BigInteger cB, BigInteger m)
+        {
+            BigInteger dA, dB;
+            dA = ShamirTools.GenerateShamirPrivateKeyUsingAnother(p, cA);
+            Console.WriteLine($"dA = {dA}");
+            dB = ShamirTools.GenerateShamirPrivateKeyUsingAnother(p, cB);
+            Console.WriteLine($"dB = {dB}");
+
+            BigInteger x = m;
+
+
+            Console.WriteLine($"Message is {x}");
+
+            BigInteger y = CryptoTools.ModuloPower(x, cA, p);
+            Console.WriteLine($"Alice calculated y = {y} and sent it to Bob");
+
+            BigInteger z = CryptoTools.ModuloPower(y, cB, p);
+            Console.WriteLine($"Bob calculated z = {z} and sent it to Alice");
+
+            BigInteger u = CryptoTools.ModuloPower(z, dA, p);
+            Console.WriteLine($"Alice calculated u = {u} and sent it to Bob");
+
+            BigInteger w = CryptoTools.ModuloPower(u, dB, p);
+            Console.WriteLine($"Bob calculated w = {w}");
+        }
+
     }
+
+    
 }
+
