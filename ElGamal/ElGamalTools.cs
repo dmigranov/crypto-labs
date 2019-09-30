@@ -10,7 +10,7 @@ namespace Crypto
             Random r = new Random();
             int s = r.Next(0, (int)p);
 
-            return CryptoTools.ModuloPower(g, s, p);    //т.к s - это случайное число в диапазоне только от 0 до MAX_INT
+            return CryptoTools.ModuloPower(g, s, p-1);    //т.к s - это случайное число в диапазоне только от 0 до MAX_INT
         }
 
         private static BigInteger GenerateElGamalPublicKey(BigInteger g, BigInteger privateKey, BigInteger p)
@@ -35,8 +35,10 @@ namespace Crypto
             return y * CryptoTools.ModuloPower(k, p - receiverPrivateKey - 1, p) % p;
         }
 
-        public static void SimulateElGamalExchange()
+        public static void SimulateElGamalExchange(BigInteger p, BigInteger g, BigInteger m)
         {
+            BigInteger dB, cB;
+            Console.WriteLine($"Bob generated private key {cB} and public key {dB}");
 
         }
     }

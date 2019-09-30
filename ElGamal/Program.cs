@@ -7,16 +7,16 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            BigInteger p, g;
+            BigInteger p, g, m;
 
             p = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
             Console.WriteLine($"p is {p}");
 
-            g = AskForBigIntegerInput("Please enter g, p > 0", x => x > 1 && x < p -1);
+            g = AskForBigIntegerInput("Please enter g, g > 1 and g < p - 1", x => x > 1 && x < p -1);
             Console.WriteLine($"g is {g}");
 
-
-
+            m = AskForBigIntegerInput("Please enter m, p > 0", x => x > 1 && x < p - 1);
+            Console.WriteLine($"g is {g}");
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
