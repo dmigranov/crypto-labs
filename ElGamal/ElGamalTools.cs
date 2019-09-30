@@ -30,9 +30,13 @@ namespace Crypto
 
         }
 
-        private static BigInteger DecryptMessage(BigInteger receiverPrivateKey, BigInteger p, BigInteger y, BigInteger w)
+        private static BigInteger DecryptMessage(BigInteger receiverPrivateKey, BigInteger p, BigInteger y, BigInteger k)
         {
-            return 0;
+            return y * CryptoTools.ModuloPower(k, p - receiverPrivateKey - 1, p) % p;
+        }
+
+        public static void SimulateElGamalExchange()
+        {
 
         }
     }
