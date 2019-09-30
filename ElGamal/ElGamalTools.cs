@@ -7,10 +7,7 @@ namespace Crypto
     {
         private static BigInteger GenerateElGamalPrivateKey(BigInteger g, BigInteger p)
         {
-            Random r = new Random();
-            int s = r.Next(0, (int)p);
-
-            return CryptoTools.ModuloPower(g, s, p-1);    //т.к s - это случайное число в диапазоне только от 0 до MAX_INT
+            return CryptoTools.GenerateRandomBigInteger(1, p);
         }
 
         private static BigInteger GenerateElGamalPublicKey(BigInteger g, BigInteger privateKey, BigInteger p)

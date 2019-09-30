@@ -23,7 +23,21 @@ namespace Crypto
             }
             return result;
         }
-
-
+        
+        /// <returns>a random big integer from [minValue, maxValue)</returns>
+        public static BigInteger GenerateRandomBigInteger(BigInteger minValue, BigInteger maxValue)
+        {
+            Random rand = new Random();
+            BigInteger result = 0;
+            do
+            {
+                int length = (int)Math.Ceiling(BigInteger.Log(maxValue, 2));
+                int numBytes = (int)Math.Ceiling(length / 8.0);
+                byte[] data = new byte[numBytes];
+                rand.NextBytes(data);
+                result = new BigInteger(data);
+            } while (result >= maxValue || result < minValue);
+            return result;
+        }
     }
 }
