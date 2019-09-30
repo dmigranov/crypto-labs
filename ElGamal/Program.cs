@@ -7,31 +7,31 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            string pString;
+            BigInteger p, g;
 
-            if (args.Length == 0)
-            {
-                Console.WriteLine("No arguments, please enter prime number p:");
-                pString = Console.ReadLine();
-            }
-            else pString = args[0];
-
-            BigInteger p;
-            try
-            {
-                p = BigInteger.Parse(pString);
-                //SimulateShamirExchange(p);
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            Console.Write("Press any key to exit: ");
-            Console.ReadKey();
+            p = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
         }
 
+        private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
+        {
+            BigInteger x;
+            do
+            {
+                Console.WriteLine(message);
+                string s = Console.ReadLine();
+                try
+                {
+                    x = BigInteger.Parse(s);
+                }
+                catch (FormatException)
+                {
+                    x = -1;
+                }
+            }
+            while (cond(x));
 
+            return x;
+        }
     }
 
 
