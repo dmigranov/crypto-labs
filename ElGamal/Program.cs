@@ -17,6 +17,9 @@ namespace Crypto
 
             m = AskForBigIntegerInput("Please enter m, x >= 0 and x < p", x => x >= 0 && x < p);
             ElGamalTools.SimulateElGamalExchange(p, g, m);
+
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
@@ -40,7 +43,5 @@ namespace Crypto
             return x;
         }
     }
-
-
 }
 
