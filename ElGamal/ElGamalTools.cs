@@ -17,12 +17,10 @@ namespace Crypto
 
         private static void EncryptMessage(BigInteger g, BigInteger receiverPublicKey, BigInteger p, BigInteger message, out BigInteger y, out BigInteger k)
         {
-
             BigInteger r = CryptoTools.GenerateRandomBigInteger(1, p - 1);
 
             k = CryptoTools.ModuloPower(g, r, p);
             y = (message * CryptoTools.ModuloPower(receiverPublicKey, r, p)) % p;
-
         }
 
         private static BigInteger DecryptMessage(BigInteger receiverPrivateKey, BigInteger p, BigInteger y, BigInteger k)
