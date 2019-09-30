@@ -10,13 +10,16 @@ namespace Crypto
             BigInteger p, g;
 
             p = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
+            Console.WriteLine($"p is {p}");
+
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
         {
-            BigInteger x;
+            BigInteger x = -1;
             do
             {
+            Cycle:
                 Console.WriteLine(message);
                 string s = Console.ReadLine();
                 try
@@ -25,10 +28,10 @@ namespace Crypto
                 }
                 catch (FormatException)
                 {
-                    x = -1;
+                    goto Cycle;
                 }
             }
-            while (cond(x));
+            while (!cond(x));
 
             return x;
         }
