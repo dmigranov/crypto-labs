@@ -20,21 +20,23 @@ namespace Crypto
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
         {
             BigInteger x;
-            do
-            {
+            //do
+            //{
             Cycle:
                 Console.WriteLine(message);
                 string s = Console.ReadLine();
                 try
                 {
                     x = BigInteger.Parse(s);
+                    if(!cond(x))
+                        goto Cycle;
                 }
                 catch (FormatException)
                 {
                     goto Cycle;
                 }
-            }
-            while (!cond(x));
+            //}
+            //while (!cond(x));
 
             return x;
         }
