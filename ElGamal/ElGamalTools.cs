@@ -18,7 +18,7 @@ namespace Crypto
             return CryptoTools.ModuloPower(g, privateKey, p);
         }
 
-        public static void CreateSendMessage(BigInteger g, BigInteger receiverPublicKey, BigInteger p, BigInteger message, out BigInteger y, out BigInteger k)
+        public static void EncryptMessage(BigInteger g, BigInteger receiverPublicKey, BigInteger p, BigInteger message, out BigInteger y, out BigInteger k)
         {
             Random random = new Random();
             int s = random.Next(0, (int)p);
@@ -30,7 +30,7 @@ namespace Crypto
 
         }
 
-        public static BigInteger CalculateMessage(BigInteger receiverPrivateKey, BigInteger p, BigInteger y, BigInteger w)
+        public static BigInteger DecryptMessage(BigInteger receiverPrivateKey, BigInteger p, BigInteger y, BigInteger w)
         {
             return 0;
 
