@@ -24,8 +24,6 @@ namespace Crypto
             return result;
         }
 
-        
 
-        
     }
 }
