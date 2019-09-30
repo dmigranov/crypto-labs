@@ -12,11 +12,14 @@ namespace Crypto
             p = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
             Console.WriteLine($"p is {p}");
 
+            //g = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
+
+
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
         {
-            BigInteger x = -1;
+            BigInteger x;
             do
             {
             Cycle:
