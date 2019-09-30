@@ -15,8 +15,8 @@ namespace Crypto
             g = AskForBigIntegerInput("Please enter g, g > 1 and g < p - 1", x => x > 1 && x < p -1);
             Console.WriteLine($"g is {g}");
 
-            m = AskForBigIntegerInput("Please enter m, p > 0", x => x > 1 && x < p - 1);
-            Console.WriteLine($"g is {g}");
+            m = AskForBigIntegerInput("Please enter m, x >= 0 and x < p", x => x >= 0 && x < p);
+            ElGamalTools.SimulateElGamalExchange(p, g, m);
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)

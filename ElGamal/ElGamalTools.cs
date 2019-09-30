@@ -45,7 +45,7 @@ namespace Crypto
 
             BigInteger w;
             w = DecryptMessage(cB, p, y, k);
-            Console.WriteLine($"Bob desiphere message {w}");
+            Console.WriteLine($"Bob deciphered message {w}");
 
         }
     }
