@@ -5,6 +5,8 @@ namespace Crypto
 {
     class CryptoTools
     {
+        static Random rand = new Random();
+
         public static BigInteger ModuloPower(BigInteger val, BigInteger exp, BigInteger mod)
         {
             if (exp < 0 || mod < 0)
@@ -27,7 +29,6 @@ namespace Crypto
         /// <returns>a random big integer from [minValue, maxValue)</returns>
         public static BigInteger GenerateRandomBigInteger(BigInteger minValue, BigInteger maxValue)
         {
-            Random rand = new Random();
             BigInteger result = 0;
             do
             {
