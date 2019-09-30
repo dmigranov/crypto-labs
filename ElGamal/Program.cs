@@ -12,7 +12,9 @@ namespace Crypto
             p = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
             Console.WriteLine($"p is {p}");
 
-            //g = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
+            g = AskForBigIntegerInput("Please enter g, p > 0", x => x > 1 && x < p -1);
+            Console.WriteLine($"g is {g}");
+
 
 
         }
