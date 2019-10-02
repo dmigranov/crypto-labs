@@ -7,7 +7,7 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            BigInteger p, q, m;
+            BigInteger p, q, d, m;
 
             p = AskForBigIntegerInput("Please enter prime number p, p > 0", x => x > 0);
             Console.WriteLine($"p is {p}");
@@ -15,8 +15,13 @@ namespace Crypto
             q = AskForBigIntegerInput("Please enter prime number q, q > 0", x => x > 0);
             Console.WriteLine($"q is {q}");
 
+            d = AskForBigIntegerInput("Please enter d, (d, phi(p*q) = 1)", x => true);
+            Console.WriteLine($"d is {d}");
+
             m = AskForBigIntegerInput("Please enter m, x >= 0 and x < p", x => x >= 0 && x < p);
-           
+            Console.WriteLine($"Message is {m}");
+
+            RSATools.SimulateRSAExchange(p, q, d, m);
 
             Console.Write("Press any key to exit: ");
             Console.ReadKey();
