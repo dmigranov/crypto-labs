@@ -37,9 +37,7 @@ namespace Crypto
             Triplet encryptedCardsForAlice = encryptedCardsForBob.ModuloPower(cB, p);
             encryptedCardsForBob.Mix();
             Console.Write($"Bob encrypted card numbers, mixed them and sent to Alice: ");
-            if (encryptedCardsForAlice.X != 0) Console.Write($"{encryptedCardsForAlice.A.Name} to {encryptedCardsForAlice.X} ");
-            if (encryptedCardsForAlice.Y != 0) Console.Write($"{encryptedCardsForAlice.B.Name} to {encryptedCardsForAlice.Y} ");
-            if (encryptedCardsForAlice.Z != 0) Console.Write($"{encryptedCardsForAlice.C.Name} to {encryptedCardsForAlice.Z} ");
+            for(int i = 0; i < 3; i++) if (encryptedCardsForAlice[i].Number != 0) Console.Write($"{encryptedCardsForAlice[i].Name} to {encryptedCardsForAlice[i].Number} ");
             Console.WriteLine();
 
             BigInteger carBEncryptedNumber = encryptedCardsForBob.ChooseRandom2();
