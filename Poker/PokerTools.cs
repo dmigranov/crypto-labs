@@ -40,8 +40,8 @@ namespace Crypto
         private static void GenerateCardNumbers(BigInteger p, out BigInteger a, out BigInteger b, out BigInteger c)
         {
             a = CryptoTools.GenerateRandomBigInteger(1, p);
-            //b = CryptoTools.GenerateRandomBigInteger(1, p);
-            //c = CryptoTools.GenerateRandomBigInteger(1, p);
+            do b = CryptoTools.GenerateRandomBigInteger(1, p); while (b == a);
+            do c = CryptoTools.GenerateRandomBigInteger(1, p); while (c == a || c == b);
         }
     }
 }
