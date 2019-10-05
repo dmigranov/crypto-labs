@@ -34,6 +34,8 @@ namespace Crypto
             Console.WriteLine($"Alice decrypted it; her card number is {cardANumber} and it's {cards[cardANumber]}!");
 
 
+
+            Triplet cardsForAlice = new Triplet(encryptedCardsForBob.A, encryptedCardsForBob.B, encryptedCardsForBob.C);
         }
 
         private struct Triplet
