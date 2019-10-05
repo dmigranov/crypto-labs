@@ -27,7 +27,7 @@ namespace Crypto
             encryptedCardsForBob.Mix();
             Console.WriteLine($"...And then mixed them: {encryptedCardsForBob.X}, {encryptedCardsForBob.Y}, {encryptedCardsForBob.Z} and sent to Bob");
 
-            BigInteger cardAEncrypted = encryptedCardsForBob[r.Next(0, 3)];
+            BigInteger cardAEncrypted = encryptedCardsForBob.ChooseRandomCard();
             Console.WriteLine($"Bob chose {cardAEncrypted} and sent to Alice");
 
             BigInteger cardA = CryptoTools.ModuloPower(cardAEncrypted, dA, p);
@@ -59,15 +59,15 @@ namespace Crypto
                 return new Triplet(Card.ModuloPower(A, exp, mod), Card.ModuloPower(B, exp, mod), Card.ModuloPower(C, exp, mod));
             }
 
-            public BigInteger this[int index]
+            public string this[BigInteger index]
             {
                 get
                 {
-                    if (index == 0)
-                        return X;
-                    else if (index == 1)
-                        return Y;
-                    else return Z;
+                    if (X == index)
+                        return A.Name;
+                    else if (Y == index)
+                        return B.Name;
+                    else return C.Name;
                 }
             }
 
@@ -85,6 +85,11 @@ namespace Crypto
                 int bI = r.Next(0, 2);
                 B = old[bI];
                 C = old[1 - bI];
+            }
+
+            internal BigInteger ChooseRandomCard()
+            {
+                throw new NotImplementedException();
             }
         }
 
