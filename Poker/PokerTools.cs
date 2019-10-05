@@ -56,7 +56,7 @@ namespace Crypto
 
             public Triplet ModuloPower(BigInteger exp, BigInteger mod)
             {
-                return new Triplet(Card.ModuloPower(A, exp, mod), Card.ModuloPower(B, exp, mod), Card.ModuloPower(Z, exp, mod));
+                return new Triplet(Card.ModuloPower(A, exp, mod), Card.ModuloPower(B, exp, mod), Card.ModuloPower(C, exp, mod));
             }
 
             public BigInteger this[int index]
@@ -75,16 +75,17 @@ namespace Crypto
             public void Mix()
             {
 
-                List<BigInteger> old = new List<BigInteger>();
-                old.Add(X); old.Add(Y); old.Add(Z);
+                List<Card> old = new List<Card>();
+                old.Add(A); old.Add(B); old.Add(C);
 
-                int xI = r.Next(0, 3);
-                X = old[xI];
-                old.RemoveAt(xI);
 
-                int yI = r.Next(0, 2);
-                Y = old[yI];
-                Z = old[1 - yI];
+                int aI = r.Next(0, 3);
+                A = old[aI];
+                old.RemoveAt(aI);
+
+                int bI = r.Next(0, 2);
+                B = old[bI];
+                C = old[1 - bI];
             }
         }
 
