@@ -119,17 +119,11 @@ namespace Crypto
                 int i = r.Next(0, 3);
                 chosenCardIndex = i;
                 return this[i].Number;
-                
             }
 
             internal void RemoveUsedCard()
             {
-                if (chosenCardIndex == 0)
-                    X = 0;
-                else if (chosenCardIndex == 1)
-                    Y = 0;
-                else
-                    Z = 0;
+                this[chosenCardIndex].Number = 0;
             }
 
             internal BigInteger ChooseRandom2()
