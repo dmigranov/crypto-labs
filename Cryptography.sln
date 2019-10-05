@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shamir", "Shamir\Shamir.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElGamal", "ElGamal\ElGamal.csproj", "{C056B93C-84CF-4D8C-AF65-C0290DEFFD93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSA", "RSA\RSA.csproj", "{9EAAA410-A82D-4F7E-8FEB-B67B83AE31AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSA", "RSA\RSA.csproj", "{9EAAA410-A82D-4F7E-8FEB-B67B83AE31AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poker", "Poker\Poker.csproj", "{940C7D77-05CA-4264-9EAA-9D20E5A23FFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9EAAA410-A82D-4F7E-8FEB-B67B83AE31AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EAAA410-A82D-4F7E-8FEB-B67B83AE31AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EAAA410-A82D-4F7E-8FEB-B67B83AE31AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{940C7D77-05CA-4264-9EAA-9D20E5A23FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940C7D77-05CA-4264-9EAA-9D20E5A23FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940C7D77-05CA-4264-9EAA-9D20E5A23FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940C7D77-05CA-4264-9EAA-9D20E5A23FFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
