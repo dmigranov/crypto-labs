@@ -35,21 +35,29 @@ namespace Crypto
 
             encryptedCardsForBob.RemoveUsedCard();
             Triplet encryptedCardsForAlice = encryptedCardsForBob.ModuloPower(cB, p);
-            encryptedCardsForBob.Mix();
+            encryptedCardsForAlice.Mix();
             Console.Write($"Bob encrypted card numbers, mixed them and sent to Alice: ");
             for(int i = 0; i < 3; i++) if (encryptedCardsForAlice[i].Number != 0) Console.Write($"{encryptedCardsForAlice[i].Name} to {encryptedCardsForAlice[i].Number} ");
             Console.WriteLine();
 
-            BigInteger carBEncryptedNumber = encryptedCardsForBob.ChooseRandom2();
+            BigInteger cardBEncryptedNumber = encryptedCardsForAlice.ChooseRandom2();
+            BigInteger cardBPartiallyDecryptedNumber = CryptoTools.ModuloPower(cardBEncryptedNumber, dA, p);
+
+            Console.WriteLine($"Alice chose {cardBEncryptedNumber}, found its power {cardBPartiallyDecryptedNumber} and sent to Bob");
+
+            BigInteger cardBNumber = CryptoTools.ModuloPower(cardBPartiallyDecryptedNumber, dB, p);
+            Console.WriteLine($"Bob decrypted it; his card number is {cardBNumber} and it's {cards.FindName(cardBNumber)}!");
+
+            encryptedCardsForBob.RemoveUsedCard();
+            for (int i = 0; i < 3; i++) 
+                if (cards[i].Number != cardANumber && cards[i].Number != cardBNumber) Console.WriteLine($"The third card has number {cards[i].Number} and is {cards[i].Name} ");
+
 
         }
 
         private class Triplet
         {
-
             private int chosenCardIndex;
-
-
             public Card A { get; set; }
             public Card B { get; set; }
             public Card C { get; set; }
@@ -66,7 +74,6 @@ namespace Crypto
                 C = c;
             }
 
-
             public Triplet ModuloPower(BigInteger exp, BigInteger mod)
             {
                 return new Triplet(Card.ModuloPower(A, exp, mod), Card.ModuloPower(B, exp, mod), Card.ModuloPower(C, exp, mod));
@@ -80,7 +87,6 @@ namespace Crypto
                         return B.Name;
                     else return C.Name;
             }
-
 
             public Card this[int index]
             {
@@ -128,7 +134,13 @@ namespace Crypto
 
             internal BigInteger ChooseRandom2()
             {
-                throw new NotImplementedException();
+                int i;
+                do
+                    i = r.Next(0, 3);
+                while (this[i].Number == 0);
+
+                chosenCardIndex = i;
+                return this[i].Number;
             }
         }
 
