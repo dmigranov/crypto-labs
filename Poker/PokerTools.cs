@@ -35,11 +35,15 @@ namespace Crypto
 
 
 
-            Triplet cardsForAlice = new Triplet(encryptedCardsForBob.A, encryptedCardsForBob.B, encryptedCardsForBob.C);
+            Triplet cardsForAlice = encryptedCardsForBob.RemoveUsedCard();
         }
 
         private struct Triplet
         {
+
+            public int ChosenCardIndex;
+
+
             public Card A { get; set; }
             public Card B { get; set; }
             public Card C { get; set; }
@@ -50,6 +54,7 @@ namespace Crypto
 
             public Triplet(Card a, Card b, Card c)
             {
+                ChosenCardIndex = 0;
                 A = a;
                 B = b;
                 C = c;
@@ -79,7 +84,6 @@ namespace Crypto
                 List<Card> old = new List<Card>();
                 old.Add(A); old.Add(B); old.Add(C);
 
-
                 int aI = r.Next(0, 3);
                 A = old[aI];
                 old.RemoveAt(aI);
@@ -92,12 +96,18 @@ namespace Crypto
             internal BigInteger ChooseRandom(int of)
             {
                 int i = r.Next(0, of);
+                ChosenCardIndex = i;
                 if (i == 0)
                     return X;
                 else if (i == 1)
                     return Y;
                 else return Z;
                 
+            }
+
+            internal Triplet RemoveUsedCard()
+            {
+                throw new NotImplementedException();
             }
         }
 
