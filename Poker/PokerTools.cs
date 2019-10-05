@@ -87,6 +87,13 @@ namespace Crypto
             }
         }
 
+
+        private struct Card
+        {
+            public BigInteger Number { get; set; }
+            public string Name { get; set; }
+        }
+
         private static void GeneratePokerPrivateKeys(BigInteger p, out BigInteger c, out BigInteger d)
         {
             BigInteger cCandidate, dCandidate, ret, temp;
