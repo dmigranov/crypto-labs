@@ -21,7 +21,7 @@ namespace Crypto
                 do
                 {
                     dCandidate = CryptoTools.GenerateRandomBigInteger(1, phi);
-                    ret = CryptoTools.EuclidAlgorithm(p - 1, dCandidate, out temp, out cCandidate);
+                    ret = CryptoTools.EuclidAlgorithm(phi, dCandidate, out temp, out cCandidate);
                 } while (ret != 1); 
                 c = cCandidate;
                 d = dCandidate;
