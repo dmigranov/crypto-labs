@@ -15,15 +15,22 @@ namespace Crypto
             BigInteger ret = CryptoTools.EuclidAlgorithm(phi, d, out temp, out c);
             if (ret != 1)
             {
-                Console.WriteLine($"d = {d} you provided isn't mutually prime with phi(N)! A new one will be generated");
-
+                Console.WriteLine($"d = {d} isn't mutually prime with phi(N)! A new one will be generated");
+                
+                BigInteger cCandidate, dCandidate;
+                do
+                {
+                    dCandidate = CryptoTools.GenerateRandomBigInteger(1, phi);
+                    ret = CryptoTools.EuclidAlgorithm(p - 1, dCandidate, out temp, out cCandidate);
+                } while (ret != 1); 
+                c = cCandidate;
+                d = dCandidate;
             }
             if (c < 0)
                 c += phi;
-            //todo: генерация как в шамире если не получилось?
+
             Console.WriteLine($"Receiver's public keys are N = {N} and d = {d}");
             Console.WriteLine($"Receiver's private key is c = {c}");
-
 
             BigInteger y = CryptoTools.ModuloPower(x, d, N);
             Console.WriteLine($"Sender encrypted message and sent y = {y} to receiver");

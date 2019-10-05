@@ -18,7 +18,7 @@ namespace Crypto
             d = AskForBigIntegerInput("Please enter d, (d, phi(p*q) = 1)", x => true);
             Console.WriteLine($"d is {d}");
 
-            m = AskForBigIntegerInput("Please enter m, x >= 0 and x < p", x => x >= 0 && x < p);
+            m = AskForBigIntegerInput($"Please enter m, m < N = {p * q}", x => x >= 0 && x < p*q);
             Console.WriteLine($"Message is {m}");
 
             RSATools.SimulateRSAExchange(p, q, d, m);
