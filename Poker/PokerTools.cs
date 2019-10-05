@@ -33,7 +33,7 @@ namespace Crypto
             BigInteger cardANumber = CryptoTools.ModuloPower(cardAEncryptedNumber, dA, p);
             Console.WriteLine($"Alice decrypted it; her card number is {cardANumber} and it's {cards[cardANumber]}!");
 
-
+            encryptedCardsForBob.RemoveUsedCard();
             Triplet encryptedCardsForAlice = encryptedCardsForBob.ModuloPower(cB, p);
             Console.WriteLine($"Bob encrypted card numbers: {encryptedCardsForAlice.A.Name} to {encryptedCardsForAlice.X}, {encryptedCardsForAlice.B.Name} to {encryptedCardsForAlice.Y}, {encryptedCardsForAlice.C.Name} to {encryptedCardsForAlice.Z}...");
 
@@ -42,20 +42,20 @@ namespace Crypto
         private class Triplet
         {
 
-            public int ChosenCardIndex;
+            private int chosenCardIndex;
 
 
             public Card A { get; set; }
             public Card B { get; set; }
             public Card C { get; set; }
 
-            public BigInteger X { get => A.Number; }
-            public BigInteger Y { get => B.Number; }
-            public BigInteger Z { get => C.Number; }
+            public BigInteger X { get => A.Number; set => A.Number = value; }
+            public BigInteger Y { get => B.Number; set => B.Number = value; }
+            public BigInteger Z { get => C.Number; set => C.Number = value; }
 
             public Triplet(Card a, Card b, Card c)
             {
-                ChosenCardIndex = 0;
+                chosenCardIndex = -1;
                 A = a;
                 B = b;
                 C = c;
@@ -97,25 +97,31 @@ namespace Crypto
             internal BigInteger ChooseRandom(int of)
             {
                 int i = r.Next(0, of);
+                chosenCardIndex = i;
                 if (i == 0)
                 {
-                    A.Number = 0;
                     return X;
                 }
                 else if (i == 1)
                 {
-                    B.Number = 0;
                     return Y;
                 }
                 else
                 {
-                    C.Number = 0;
                     return Z;
                 }
                 
             }
 
-
+            internal void RemoveUsedCard()
+            {
+                if (chosenCardIndex == 0)
+                    X = 0;
+                else if (chosenCardIndex == 1)
+                    Y = 0;
+                else
+                    Z = 0;
+            }
         }
 
 
