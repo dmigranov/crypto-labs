@@ -21,7 +21,7 @@ namespace Crypto
             Console.WriteLine($"Alice generated numbers for cards and told Bob that alpha is {alpha}, beta is {beta}, gamma is {gamma}");
 
             Console.WriteLine("START OF THE EXCHANGE");
-            Triplet cards = new Triplet(alpha, beta, gamma);
+            Triplet cards = new Triplet(new Card(alpha, "ALPHA"), new Card(beta, "BETA"), new Card(gamma, "GAMMA"));
             Triplet encryptedCardsForBob = cards.ModuloPower(cA, p);
             Console.WriteLine($"Alice encrypted card numbers: alpha to {encryptedCardsForBob.X}, beta is {encryptedCardsForBob.Y}, gamma is {encryptedCardsForBob.Z}...");
             encryptedCardsForBob.Mix();
@@ -31,7 +31,7 @@ namespace Crypto
             Console.WriteLine($"Bob chose {cardAEncrypted} and sent to Alice");
 
             BigInteger cardA = CryptoTools.ModuloPower(cardAEncrypted, dA, p);
-            Console.WriteLine($"Alice decrypted it; her card number is {cardA}!");
+            Console.WriteLine($"Alice decrypted it; her card number is {cardA} and it's {cards[cardA]}!");
 
 
         }
@@ -69,7 +69,6 @@ namespace Crypto
                         return Y;
                     else return Z;
                 }
-                
             }
 
             public void Mix()
