@@ -43,6 +43,9 @@ namespace Crypto
             public Card C { get; set; }
 
             public BigInteger X { get => A.Number; }
+            public BigInteger Y { get => B.Number; }
+            public BigInteger Z { get => C.Number; }
+
             public Triplet(Card a, Card b, Card c)
             {
                 A = a;
@@ -53,7 +56,7 @@ namespace Crypto
 
             public Triplet ModuloPower(BigInteger exp, BigInteger mod)
             {
-                return new Triplet(CryptoTools.ModuloPower(A, exp, mod), CryptoTools.ModuloPower(B, exp, mod), CryptoTools.ModuloPower(Z, exp, mod));
+                return new Triplet(Card.ModuloPower(A, exp, mod), Card.ModuloPower(B, exp, mod), Card.ModuloPower(Z, exp, mod));
             }
 
             public BigInteger this[int index]
@@ -95,6 +98,11 @@ namespace Crypto
             {
                 Number = number;
                 Name = name;
+            }
+
+            public static Card ModuloPower(Card a, BigInteger exp, BigInteger mod)
+            {
+                return new Card(CryptoTools.ModuloPower(a.Number, exp, mod), a.Name);
             }
         }
 
