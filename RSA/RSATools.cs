@@ -11,9 +11,13 @@ namespace Crypto
             BigInteger phi = (p - 1) * (q - 1);
 
             BigInteger c, temp;
+
             BigInteger ret = CryptoTools.EuclidAlgorithm(phi, d, out temp, out c);
             if (ret != 1)
-                throw new NotMutuallyPrimeNumbersException();
+            {
+                Console.WriteLine($"d = {d} you provided isn't mutually prime with phi(N)! A new one will be generated");
+
+            }
             if (c < 0)
                 c += phi;
             //todo: генерация как в шамире если не получилось?
