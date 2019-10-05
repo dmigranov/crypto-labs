@@ -38,24 +38,22 @@ namespace Crypto
 
         private struct Triplet
         {
-            public BigInteger X { get; set; }
-            public BigInteger Y { get; set; }
-            public BigInteger Z { get; set; }
-            public Triplet(BigInteger x, BigInteger y, BigInteger z)
+            public Card A { get; set; }
+            public Card B { get; set; }
+            public Card C { get; set; }
+
+            public BigInteger X { get => A.Number; }
+            public Triplet(Card a, Card b, Card c)
             {
-                X = x;
-                Y = y;
-                Z = z;
+                A = a;
+                B = b;
+                C = c;
             }
 
-            public static Triplet ModuloPower(Triplet val, BigInteger exp, BigInteger mod)
-            {
-                return new Triplet(CryptoTools.ModuloPower(val.X, exp, mod), CryptoTools.ModuloPower(val.Y, exp, mod), CryptoTools.ModuloPower(val.Z, exp, mod));
-            }
 
             public Triplet ModuloPower(BigInteger exp, BigInteger mod)
             {
-                return new Triplet(CryptoTools.ModuloPower(X, exp, mod), CryptoTools.ModuloPower(Y, exp, mod), CryptoTools.ModuloPower(Z, exp, mod));
+                return new Triplet(CryptoTools.ModuloPower(A, exp, mod), CryptoTools.ModuloPower(B, exp, mod), CryptoTools.ModuloPower(Z, exp, mod));
             }
 
             public BigInteger this[int index]
@@ -92,6 +90,12 @@ namespace Crypto
         {
             public BigInteger Number { get; set; }
             public string Name { get; set; }
+
+            public Card(BigInteger number, string name)
+            {
+                Number = number;
+                Name = name;
+            }
         }
 
         private static void GeneratePokerPrivateKeys(BigInteger p, out BigInteger c, out BigInteger d)
