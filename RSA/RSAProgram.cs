@@ -15,7 +15,7 @@ namespace Crypto
             q = AskForBigIntegerInput("Please enter prime number q, q > 0", x => x > 0);
             Console.WriteLine($"q is {q}");
 
-            d = AskForBigIntegerInput("Please enter d, (d, phi(p*q) = 1)", x => true);
+            d = AskForBigIntegerInput("Please enter d, d > 0, (d, phi(p*q) = 1)", x => x > 0);
             Console.WriteLine($"d is {d}");
 
             m = AskForBigIntegerInput($"Please enter m, m < N = {p * q}", x => x >= 0 && x < p*q);
