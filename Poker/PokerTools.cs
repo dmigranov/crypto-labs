@@ -23,7 +23,7 @@ namespace Crypto
             Console.WriteLine("START OF THE EXCHANGE");
             Triplet cards = new Triplet(new Card(alpha, "ALPHA"), new Card(beta, "BETA"), new Card(gamma, "GAMMA"));
             Triplet encryptedCardsForBob = cards.ModuloPower(cA, p);
-            Console.WriteLine($"Alice encrypted card numbers: alpha to {encryptedCardsForBob.X}, beta is {encryptedCardsForBob.Y}, gamma is {encryptedCardsForBob.Z}...");
+            Console.WriteLine($"Alice encrypted card numbers: alpha to {encryptedCardsForBob.X}, beta to {encryptedCardsForBob.Y}, gamma to {encryptedCardsForBob.Z}...");
             encryptedCardsForBob.Mix();
             Console.WriteLine($"...And then mixed them: {encryptedCardsForBob.X}, {encryptedCardsForBob.Y}, {encryptedCardsForBob.Z} and sent to Bob");
 
@@ -34,11 +34,12 @@ namespace Crypto
             Console.WriteLine($"Alice decrypted it; her card number is {cardANumber} and it's {cards[cardANumber]}!");
 
 
+            Triplet encryptedCardsForAlice = encryptedCardsForBob.ModuloPower(cB, p);
+            Console.WriteLine($"Bob encrypted card numbers: {encryptedCardsForAlice.A.Name} to {encryptedCardsForAlice.X}, {encryptedCardsForAlice.B.Name} to {encryptedCardsForAlice.Y}, {encryptedCardsForAlice.C.Name} to {encryptedCardsForAlice.Z}...");
 
-            Triplet cardsForAlice = encryptedCardsForBob.RemoveUsedCard();
         }
 
-        private struct Triplet
+        private class Triplet
         {
 
             public int ChosenCardIndex;
@@ -96,23 +97,29 @@ namespace Crypto
             internal BigInteger ChooseRandom(int of)
             {
                 int i = r.Next(0, of);
-                ChosenCardIndex = i;
                 if (i == 0)
+                {
+                    A.Number = 0;
                     return X;
+                }
                 else if (i == 1)
+                {
+                    B.Number = 0;
                     return Y;
-                else return Z;
+                }
+                else
+                {
+                    C.Number = 0;
+                    return Z;
+                }
                 
             }
 
-            internal Triplet RemoveUsedCard()
-            {
-                throw new NotImplementedException();
-            }
+
         }
 
 
-        private struct Card
+        private class Card
         {
             public BigInteger Number { get; set; }
             public string Name { get; set; }
