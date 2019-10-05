@@ -31,7 +31,7 @@ namespace Crypto
             Console.WriteLine($"Bob chose {cardAEncryptedNumber} and sent to Alice");
 
             BigInteger cardANumber = CryptoTools.ModuloPower(cardAEncryptedNumber, dA, p);
-            Console.WriteLine($"Alice decrypted it; her card number is {cardANumber} and it's {cards[cardANumber]}!");
+            Console.WriteLine($"Alice decrypted it; her card number is {cardANumber} and it's {cards.FindName(cardANumber)}!");
 
             encryptedCardsForBob.RemoveUsedCard();
             Triplet encryptedCardsForAlice = encryptedCardsForBob.ModuloPower(cB, p);
@@ -74,18 +74,27 @@ namespace Crypto
                 return new Triplet(Card.ModuloPower(A, exp, mod), Card.ModuloPower(B, exp, mod), Card.ModuloPower(C, exp, mod));
             }
 
-            public string this[BigInteger index]
+            public string FindName(BigInteger cardNumber)
+            {
+                    if (X == cardNumber)
+                        return A.Name;
+                    else if (Y == cardNumber)
+                        return B.Name;
+                    else return C.Name;
+            }
+
+
+            public Card this[int index]
             {
                 get
                 {
-                    if (X == index)
-                        return A.Name;
-                    else if (Y == index)
-                        return B.Name;
-                    else return C.Name;
+                    if (0 == index)
+                        return A;
+                    else if (1 == index)
+                        return B;
+                    else return C;
                 }
             }
-
             public void Mix()
             {
 
@@ -105,18 +114,7 @@ namespace Crypto
             {
                 int i = r.Next(0, 3);
                 chosenCardIndex = i;
-                if (i == 0)
-                {
-                    return X;
-                }
-                else if (i == 1)
-                {
-                    return Y;
-                }
-                else
-                {
-                    return Z;
-                }
+                return this[i].Number;
                 
             }
 
@@ -132,7 +130,7 @@ namespace Crypto
 
             internal BigInteger ChooseRandom2()
             {
-                int i = r.Next(0, 3);
+                throw new NotImplementedException();
             }
         }
 
