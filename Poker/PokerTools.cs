@@ -16,10 +16,8 @@ namespace Crypto
             Console.WriteLine($"Bob's private keys are cB = {cB} and dB = {dB}");
 
             BigInteger alpha, beta, gamma; //карты
-            alpha = CryptoTools.GenerateRandomBigInteger(1, p);
-            beta = CryptoTools.GenerateRandomBigInteger(1, p);
-            gamma = CryptoTools.GenerateRandomBigInteger(1, p);
-            Console.WriteLine($"Alice told Bob that alpha is {alpha}, beta is {beta}, gamma is {gamma}");
+            GenerateCardNumbers(p, out alpha, out beta, out gamma);
+            Console.WriteLine($"Alice generated numbers for cards and told Bob that alpha is {alpha}, beta is {beta}, gamma is {gamma}");
 
 
         }
@@ -38,5 +36,12 @@ namespace Crypto
             d = dCandidate;
         }
 
+
+        private static void GenerateCardNumbers(BigInteger p, out BigInteger a, out BigInteger b, out BigInteger c)
+        {
+            a = CryptoTools.GenerateRandomBigInteger(1, p);
+            //b = CryptoTools.GenerateRandomBigInteger(1, p);
+            //c = CryptoTools.GenerateRandomBigInteger(1, p);
+        }
     }
 }
