@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Crypto
 {
-    class Program
+    class ElGamalProgram
     {
         static void Main(string[] args)
         {

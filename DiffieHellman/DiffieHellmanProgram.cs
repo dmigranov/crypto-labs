@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Crypto
 {
-    class Program
+    class DiffieHellmanProgram
     {
         static void Main(string[] args)
         {

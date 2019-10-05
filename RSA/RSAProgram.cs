@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Crypto
 {
-    class Program
+    class RSAProgram
     {
         static void Main(string[] args)
         {

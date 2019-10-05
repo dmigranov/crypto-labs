@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    class Program
+    class PokerProgram
     {
         static void Main(string[] args)
         {
