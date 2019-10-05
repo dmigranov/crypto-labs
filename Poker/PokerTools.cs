@@ -13,9 +13,15 @@ namespace Crypto
             GeneratePokerPrivateKeys(p, out cA, out dA);
             Console.WriteLine($"Alice's private keys are cA = {cA} and dA = {dA}");
             GeneratePokerPrivateKeys(p, out cB, out dB);
-            Console.WriteLine($"Alice's private keys are cB = {cB} and dB = {dB}");
+            Console.WriteLine($"Bob's private keys are cB = {cB} and dB = {dB}");
 
             BigInteger alpha, beta, gamma; //карты
+            alpha = CryptoTools.GenerateRandomBigInteger(1, p);
+            beta = CryptoTools.GenerateRandomBigInteger(1, p);
+            gamma = CryptoTools.GenerateRandomBigInteger(1, p);
+            Console.WriteLine($"Alice told Bob that alpha is {alpha}, beta is {beta}, gamma is {gamma}");
+
+
         }
 
         private static void GeneratePokerPrivateKeys(BigInteger p, out BigInteger c, out BigInteger d)

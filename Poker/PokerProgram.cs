@@ -13,7 +13,10 @@ namespace Crypto
             p = AskForBigIntegerInput("Please enter prime number p, p > 0", x => x > 0);
             Console.WriteLine($"p is {p}");
 
+            PokerTools.SimulatePokerExchange(p);
 
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
         }
 
 
