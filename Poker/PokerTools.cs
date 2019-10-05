@@ -27,11 +27,11 @@ namespace Crypto
             encryptedCardsForBob.Mix();
             Console.WriteLine($"...And then mixed them: {encryptedCardsForBob.X}, {encryptedCardsForBob.Y}, {encryptedCardsForBob.Z} and sent to Bob");
 
-            BigInteger cardAEncrypted = encryptedCardsForBob.ChooseRandomCard(3);
-            Console.WriteLine($"Bob chose {cardAEncrypted} and sent to Alice");
+            Card cardAEncrypted = encryptedCardsForBob.ChooseRandomCard(3);
+            Console.WriteLine($"Bob chose {cardAEncrypted.Number} and sent to Alice");
 
-            BigInteger cardA = CryptoTools.ModuloPower(cardAEncrypted, dA, p);
-            Console.WriteLine($"Alice decrypted it; her card number is {cardA} and it's {cards[cardA]}!");
+            Card cardA = Card.ModuloPower(cardAEncrypted, dA, p);
+            Console.WriteLine($"Alice decrypted it; her card number is {cardA.Number} and it's {cards[cardA.Number]}!");
 
 
         }
@@ -87,12 +87,14 @@ namespace Crypto
                 C = old[1 - bI];
             }
 
-            internal BigInteger ChooseRandomCard(int of)
+            internal Card ChooseRandomCard(int of)
             {
                 int i = r.Next(0, of);
                 if (i == 0)
-                    return X;
-                if (i == 1)
+                    return A;
+                else if (i == 1)
+                    return B;
+                else return C;
                 
             }
         }
