@@ -27,7 +27,7 @@ namespace Crypto
             encryptedCardsForBob.Mix();
             Console.WriteLine($"...And then mixed them: {encryptedCardsForBob.X}, {encryptedCardsForBob.Y}, {encryptedCardsForBob.Z} and sent to Bob");
 
-            BigInteger cardAEncryptedNumber = encryptedCardsForBob.ChooseRandom(3);
+            BigInteger cardAEncryptedNumber = encryptedCardsForBob.ChooseRandom3();
             Console.WriteLine($"Bob chose {cardAEncryptedNumber} and sent to Alice");
 
             BigInteger cardANumber = CryptoTools.ModuloPower(cardAEncryptedNumber, dA, p);
@@ -35,7 +35,14 @@ namespace Crypto
 
             encryptedCardsForBob.RemoveUsedCard();
             Triplet encryptedCardsForAlice = encryptedCardsForBob.ModuloPower(cB, p);
-            Console.WriteLine($"Bob encrypted card numbers: {encryptedCardsForAlice.A.Name} to {encryptedCardsForAlice.X}, {encryptedCardsForAlice.B.Name} to {encryptedCardsForAlice.Y}, {encryptedCardsForAlice.C.Name} to {encryptedCardsForAlice.Z}...");
+            encryptedCardsForBob.Mix();
+            Console.Write($"Bob encrypted card numbers, mixed them and sent to Alice: ");
+            if (encryptedCardsForAlice.X != 0) Console.Write($"{encryptedCardsForAlice.A.Name} to {encryptedCardsForAlice.X} ");
+            if (encryptedCardsForAlice.Y != 0) Console.Write($"{encryptedCardsForAlice.B.Name} to {encryptedCardsForAlice.Y} ");
+            if (encryptedCardsForAlice.Z != 0) Console.Write($"{encryptedCardsForAlice.C.Name} to {encryptedCardsForAlice.Z} ");
+            Console.WriteLine();
+
+            BigInteger carBEncryptedNumber = encryptedCardsForBob.ChooseRandom2();
 
         }
 
@@ -94,9 +101,9 @@ namespace Crypto
                 C = old[1 - bI];
             }
 
-            internal BigInteger ChooseRandom(int of)
+            internal BigInteger ChooseRandom3()
             {
-                int i = r.Next(0, of);
+                int i = r.Next(0, 3);
                 chosenCardIndex = i;
                 if (i == 0)
                 {
@@ -121,6 +128,11 @@ namespace Crypto
                     Y = 0;
                 else
                     Z = 0;
+            }
+
+            internal BigInteger ChooseRandom2()
+            {
+                int i = r.Next(0, 3);
             }
         }
 
