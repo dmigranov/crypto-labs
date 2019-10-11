@@ -24,6 +24,11 @@ namespace Crypto
 
             m = AskForBigIntegerInput($"Please enter m, m < N = {p * q} (h(m) = m)", x => x >= 0 && x < p * q);
             Console.WriteLine($"Message is {m}");
+
+            RSASignatureTools.SimulateRSASigning(p, q, d, m);
+
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
