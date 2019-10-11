@@ -38,21 +38,36 @@ namespace Crypto
             Console.WriteLine($"Alice's private key is c = {c}");
 
 
-            BigInteger y = m;
+            BigInteger y = CalculateHash(m);
             Console.WriteLine($"Hash function of message {m} is {y} (h(m) = m)");
 
-            BigInteger s = CryptoTools.ModuloPower(y, c, N);
+            BigInteger s = SignMessage(y, c, N);
             Console.WriteLine($"Alcie sent message {m} and signature {s} to Bob");
 
 
-            BigInteger w = CryptoTools.ModuloPower(s, d, N);
+            
             Console.WriteLine("Bob received them and checked if signature is correct");
-            if(w == m)
+            if (CheckSignature(m, s, d, N) == true)
                 Console.WriteLine("Signature is correct!");
             else
                 Console.WriteLine("Signature is not correct!");
 
         }
 
+        private static BigInteger SignMessage(BigInteger y, BigInteger c, BigInteger N)
+        {
+            return CryptoTools.ModuloPower(y, c, N);
+        }
+
+        private static BigInteger CalculateHash(BigInteger m)
+        {
+            return m;
+        }
+
+        public static bool CheckSignature(BigInteger m, BigInteger s, BigInteger d, BigInteger N)
+        {
+            BigInteger w = CryptoTools.ModuloPower(s, d, N);
+            return w == m;
+        }
     }
 }
