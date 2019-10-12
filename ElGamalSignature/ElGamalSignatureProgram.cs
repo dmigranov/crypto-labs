@@ -12,10 +12,10 @@ namespace Crypto
             p = AskForBigIntegerInput("Please enter p, p > 1", x => x > 1);
             Console.WriteLine($"p is {p}");
 
-            g = AskForBigIntegerInput("Please enter g, g > 1 and g < p - 1", x => x > 1 && x < p -1);
+            g = AskForBigIntegerInput($"Please enter g, g > 1 and g < {p - 1}", x => x > 1 && x < p -1);
             Console.WriteLine($"g is {g}");
 
-            m = AskForBigIntegerInput("Please enter m, m > 1 and m < p", x => x > 1 && x < p);
+            m = AskForBigIntegerInput($"Please enter m, m > 1 and m < {p}", x => x > 1 && x < p);
             ElGamalSignatureTools.SimulateElGamalSigning(p, g, m);
 
             Console.Write("Press any key to exit: ");

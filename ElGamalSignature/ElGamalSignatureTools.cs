@@ -20,18 +20,26 @@ namespace Crypto
             BigInteger r, s;
             SignMessage(h, g, p, x, out r, out s);           
 
-            Console.WriteLine($"ALice signed her message and sent <m = {m}, r = {r}, s = {s}>");
+            Console.WriteLine($"Alice signed her message and sent <m = {m}, r = {r}, s = {s}> to Bob");
+            Console.WriteLine("Bob received them and checked if signature is correct:");
+            SimulateElGamalChecking(m, r, s, p, y, g);
+        }
 
-            
+        private static void SimulateElGamalChecking(BigInteger m, BigInteger r, BigInteger s, BigInteger p, BigInteger y, BigInteger g)
+        {
+            if (CheckSignature(m, r, s, p, y, g) == true)
+                Console.WriteLine("Signature is correct!");
+            else
+                Console.WriteLine("Signature is not correct!");
         }
 
         private static void SignMessage(BigInteger h, BigInteger g, BigInteger p, BigInteger x, out BigInteger r, out BigInteger s)
         {
-            BigInteger k, kRev, ret, temp;
+            BigInteger k, kRev, ret;
             do
             {
                 k = CryptoTools.GenerateRandomBigInteger(2, p - 1);
-                ret = CryptoTools.EuclidAlgorithm(p - 1, k, out temp, out kRev);
+                ret = CryptoTools.EuclidAlgorithm(p - 1, k, out _, out kRev);
             } while (ret != 1);
             
             if (kRev < 0)
@@ -40,6 +48,7 @@ namespace Crypto
             r = CryptoTools.ModuloPower(g, k, p);
 
             BigInteger u = (h - x * r) % (p - 1);
+            if (u < 0) u += (p - 1);
             s = (kRev * u) % (p - 1);
         }
 
@@ -71,11 +80,11 @@ namespace Crypto
             return m;
         }
 
-        private static bool CheckSignature(BigInteger m, BigInteger r, BigInteger s, BigInteger p, BigIntger y)
+        private static bool CheckSignature(BigInteger m, BigInteger r, BigInteger s, BigInteger p, BigInteger y, BigInteger g)
         {
             BigInteger h = CalculateHash(m);
-            
-            return w == h;
+
+            return (CryptoTools.ModuloPower(y, r, p) * CryptoTools.ModuloPower(r, s, p)) % p == CryptoTools.ModuloPower(g, h, p);
         }
     }
 }
