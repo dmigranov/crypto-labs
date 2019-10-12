@@ -17,20 +17,19 @@ namespace Crypto
             BigInteger h = CalculateHash(m);
             Console.WriteLine($"Hash function of message {m} is {h} (h(m) = m)");
 
-            //k,1 < k < p- 1 (k,p-1) = 1
-
-            
+            BigInteger r, s;
+            SignMessage(h, g, p, x, out r, out s);           
 
 
         }
 
-        private static void SignMessage(BigInteger h, BigInteger g, BigInteger p, out BigInteger r, out BigInteger s)
+        private static void SignMessage(BigInteger h, BigInteger g, BigInteger p, BigInteger x, out BigInteger r, out BigInteger s)
         {
-            BigInteger k, kRev, ret, t1, t2;
+            BigInteger k, kRev, ret, temp;
             do
             {
                 k = CryptoTools.GenerateRandomBigInteger(2, p - 1);
-                ret = CryptoTools.EuclidAlgorithm(p - 1, k, out t1, out kRev);
+                ret = CryptoTools.EuclidAlgorithm(p - 1, k, out temp, out kRev);
             } while (ret != 1);
             
             if (kRev < 0)
