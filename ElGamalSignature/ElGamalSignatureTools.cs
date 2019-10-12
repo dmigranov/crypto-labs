@@ -19,6 +19,13 @@ namespace Crypto
 
             //k,1 < k < p- 1 (k,p-1) = 1
 
+            
+
+
+        }
+
+        private static void SignMessage(BigInteger h, BigInteger g, BigInteger p, out BigInteger r, out BigInteger s)
+        {
             BigInteger k, kRev, ret, t1, t2;
             do
             {
@@ -29,13 +36,10 @@ namespace Crypto
             if (kRev < 0)
                 kRev += (p - 1);
         
-            Console.WriteLine($"Alice generated k = {k}, (k, p - 1) = 1; k^-1 = {kRev}");
+            r = CryptoTools.ModuloPower(g, k, p);
 
-            BigInteger r = CryptoTools.ModuloPower(g, k, p);
-
-            Console.WriteLine($"Alice calculated r = {r}");
-
-
+            BigInteger u = (h - x * r) % (p - 1);
+            s = (kRev * u) % (p - 1);
         }
 
         private static BigInteger GenerateElGamalPrivateKey(BigInteger g, BigInteger p)
