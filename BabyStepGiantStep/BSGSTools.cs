@@ -50,7 +50,7 @@ namespace Crypto
 
             for (BigInteger j = 1; j <= k; j++)
             {
-                commonList.Add(new NumberIndex(CryptoTools.ModuloPower(a, j * m, p), k, false));
+                commonList.Add(new NumberIndex(CryptoTools.ModuloPower(a, j * m, p), j, false));
             }
 
             commonList.Sort();
@@ -68,7 +68,7 @@ namespace Crypto
                     {
                         if (prev.IsBaby != cur.IsBaby)
                         {
-                            if (prev.IsBaby == true)
+                            if (prev.IsBaby == false)
                             {
                                 iX = prev.Index;
                                 jX = cur.Index;
