@@ -46,17 +46,13 @@ namespace Crypto
             Console.WriteLine("first");
             for (BigInteger i = 0; i < m; i++)
             {
-                NumberIndex n = new NumberIndex((y * CryptoTools.ModuloPower(a, i, p)) % p, i, true);
-                commonList.Add(n);
-                Console.WriteLine(n.Number);
+                commonList.Add(new NumberIndex((y * CryptoTools.ModuloPower(a, i, p)) % p, i, true));
             }
             Console.WriteLine("second");
 
             for (BigInteger j = 1; j <= k; j++)
             {
-                NumberIndex n = new NumberIndex(CryptoTools.ModuloPower(a, j * m, p), k, false);
-                commonList.Add(n);
-                Console.WriteLine(n.Number);
+                commonList.Add(new NumberIndex(CryptoTools.ModuloPower(a, j * m, p), k, false));
             }
 
             commonList.Sort();
