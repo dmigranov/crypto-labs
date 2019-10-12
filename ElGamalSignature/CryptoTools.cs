@@ -40,5 +40,58 @@ namespace Crypto
             } while (result >= maxValue || result < minValue);
             return result;
         }
+
+
+        public static BigInteger EuclidAlgorithm(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y)
+        {
+            if (b > a)
+            {
+                BigInteger t;
+                t = a;
+                a = b;
+                b = t;
+            }
+
+            Triplet prev = new Triplet(a, 1, 0);
+            Triplet cur = new Triplet(b, 0, 1);
+            Triplet temp;
+
+            while (cur.X != 0)
+            {
+                temp = cur;
+                cur = prev - (prev.X / cur.X) * cur;
+                prev = temp;
+            }
+
+            x = prev.Y;
+            y = prev.Z;
+            return prev.X;
+        }
+
+        private struct Triplet
+        {
+            public BigInteger X { get; set; }
+            public BigInteger Y { get; set; }
+            public BigInteger Z { get; set; }
+            public Triplet(BigInteger x, BigInteger y, BigInteger z)
+            {
+                X = x;
+                Y = y;
+                Z = z;
+            }
+
+            public static Triplet operator -(Triplet a, Triplet b)
+            {
+                return new Triplet(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+            }
+            public static Triplet operator *(BigInteger k, Triplet a)
+            {
+                return new Triplet(a.X * k, a.Y * k, a.Z * k);
+            }
+            public static Triplet operator *(Triplet a, BigInteger k)
+            {
+                return new Triplet(a.X * k, a.Y * k, a.Z * k);
+            }
+        }
     }
 }

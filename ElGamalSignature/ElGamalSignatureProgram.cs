@@ -9,13 +9,13 @@ namespace Crypto
         {
             BigInteger p, g, m;
 
-            p = AskForBigIntegerInput("Please enter p, p > 0", x => x > 0);
+            p = AskForBigIntegerInput("Please enter p, p > 1", x => x > 1);
             Console.WriteLine($"p is {p}");
 
             g = AskForBigIntegerInput("Please enter g, g > 1 and g < p - 1", x => x > 1 && x < p -1);
             Console.WriteLine($"g is {g}");
 
-            m = AskForBigIntegerInput("Please enter m, x >= 0 and x < p", x => x >= 0 && x < p);
+            m = AskForBigIntegerInput("Please enter m, m > 1 and m < p", x => x > 1 && x < p);
             ElGamalSignatureTools.SimulateElGamalSigning(p, g, m);
 
             Console.Write("Press any key to exit: ");

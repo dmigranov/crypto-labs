@@ -11,8 +11,25 @@ namespace Crypto
             BigInteger x = CryptoTools.GenerateRandomBigInteger(2, p - 1);
             BigInteger y = CryptoTools.ModuloPower(g, x, p);
 
-            Console.WriteLine($"Alice generated her private key x = {x} and calculated her publci key y = {y}");
+            Console.WriteLine($"Alice generated her private key x = {x} and calculated her public key y = {y}");
 
+
+            BigInteger h = CalculateHash(m);
+            Console.WriteLine($"Hash function of message {m} is {h} (h(m) = m)");
+
+            //k,1 < k < p- 1 (k,p-1) = 1
+
+            BigInteger k, ret, t1, t2;
+            do
+            {
+                k = CryptoTools.GenerateRandomBigInteger(2, p - 1);
+                ret = CryptoTools.EuclidAlgorithm(p - 1, k, out t1, out t2);
+            } while (ret != 1);
+            
+            if (k < 0)
+                k += (p - 1);
+        
+            Console.WriteLine($"Alice generated k = {k}, (k, p - 1) = 1");
 
         }
 
@@ -55,6 +72,12 @@ namespace Crypto
             BigInteger w;
             w = DecryptMessage(cB, p, y, k);
             Console.WriteLine($"Bob deciphered message {w}");
+        }
+
+
+        private static BigInteger CalculateHash(BigInteger m)
+        {
+            return m;
         }
     }
 }
