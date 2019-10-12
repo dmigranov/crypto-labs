@@ -31,6 +31,11 @@ namespace Crypto
         
             Console.WriteLine($"Alice generated k = {k}, (k, p - 1) = 1");
 
+            BigInteger r = CryptoTools.ModuloPower(g, k, p);
+
+            Console.WriteLine($"Alice calculated r = {r}");
+
+
         }
 
         private static BigInteger GenerateElGamalPrivateKey(BigInteger g, BigInteger p)
