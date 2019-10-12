@@ -25,7 +25,7 @@ namespace Crypto
             SimulateElGamalChecking(m, r, s, p, y, g);
         }
 
-        private static void SimulateElGamalChecking(BigInteger m, BigInteger r, BigInteger s, BigInteger p, BigInteger y, BigInteger g)
+        public static void SimulateElGamalChecking(BigInteger m, BigInteger r, BigInteger s, BigInteger p, BigInteger y, BigInteger g)
         {
             if (CheckSignature(m, r, s, p, y, g) == true)
                 Console.WriteLine("Signature is correct!");

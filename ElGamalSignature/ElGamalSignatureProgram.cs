@@ -30,14 +30,20 @@ namespace Crypto
                 p = AskForBigIntegerInput("Please enter p, p > 1", x => x > 1);
                 Console.WriteLine($"p is {p}");
 
-                d = AskForBigIntegerInput("Please enter d, d > 0, (d, phi(N) = 1)", x => x > 0);
-                Console.WriteLine($"d is {d}");
+                g = AskForBigIntegerInput($"Please enter g, g > 1 and g < {p - 1}", x => x > 1 && x < p - 1);
+                Console.WriteLine($"g is {g}");
 
-                m = AskForBigIntegerInput($"Please enter m, m < N = {N} (h(m) = m)", x => x >= 0 && x < N);
-                Console.WriteLine($"Message is {m}");
+                m = AskForBigIntegerInput($"Please enter m, m > 1 and m < {p}, h(m) = m", x => x > 1 && x < p);
+                Console.WriteLine($"m is {m}");
 
-                s = AskForBigIntegerInput($"Please enter s, s < N = {N}", x => x >= 0 && x < N);
-                Console.WriteLine($"Signature is {s}");
+                r = AskForBigIntegerInput($"Please enter r, r > 0 and r < {p}", x => x > 0 && x < p);
+                Console.WriteLine($"r is {r}");
+
+                s = AskForBigIntegerInput($"Please enter s, r > 0 and r < {p - 1}", x => x > 0 && x < p - 1);
+                Console.WriteLine($"s is {s}");
+
+                y = AskForBigIntegerInput($"Please enter y, y > 0 and y < {p}", x => x > 0 && x < p);
+                Console.WriteLine($"y is {y}");
 
                 ElGamalSignatureTools.SimulateElGamalChecking(m, r, s, p, y, g);
             }
