@@ -19,17 +19,17 @@ namespace Crypto
 
             //k,1 < k < p- 1 (k,p-1) = 1
 
-            BigInteger k, ret, t1, t2;
+            BigInteger k, kRev, ret, t1, t2;
             do
             {
                 k = CryptoTools.GenerateRandomBigInteger(2, p - 1);
-                ret = CryptoTools.EuclidAlgorithm(p - 1, k, out t1, out t2);
+                ret = CryptoTools.EuclidAlgorithm(p - 1, k, out t1, out kRev);
             } while (ret != 1);
             
-            if (k < 0)
-                k += (p - 1);
+            if (kRev < 0)
+                kRev += (p - 1);
         
-            Console.WriteLine($"Alice generated k = {k}, (k, p - 1) = 1");
+            Console.WriteLine($"Alice generated k = {k}, (k, p - 1) = 1; k^-1 = {kRev}");
 
             BigInteger r = CryptoTools.ModuloPower(g, k, p);
 
