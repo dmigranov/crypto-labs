@@ -37,18 +37,16 @@ namespace Crypto
     {
         //private static List<NumberIndex> babyList = new List<NumberIndex>(), giantList = new List<NumberIndex>();
 
-        internal static void SolveEquation(BigInteger y, BigInteger a, BigInteger p)
+        internal static BigInteger SolveEquation(BigInteger y, BigInteger a, BigInteger p)
         {
             List<NumberIndex> commonList = new List<NumberIndex>();
 
             BigInteger k, m;
             k = m = (BigInteger)Math.Ceiling(Math.Sqrt((double)p));
-            Console.WriteLine("first");
             for (BigInteger i = 0; i < m; i++)
             {
                 commonList.Add(new NumberIndex((y * CryptoTools.ModuloPower(a, i, p)) % p, i, true));
             }
-            Console.WriteLine("second");
 
             for (BigInteger j = 1; j <= k; j++)
             {
@@ -58,6 +56,7 @@ namespace Crypto
             commonList.Sort();
 
             NumberIndex prev = null, cur = null;
+            BigInteger iX = 0, jX = 0;
             foreach(var element in commonList)
             {
                 if(cur != null)
@@ -66,8 +65,29 @@ namespace Crypto
 
                 if (prev != null)
                     if (prev.Number == cur.Number)
-                        Console.WriteLine($"{prev.Number} {cur.IsBaby} {prev.IsBaby} {cur.Index}");
+                    {
+                        if (prev.IsBaby != cur.IsBaby)
+                        {
+                            if (prev.IsBaby == true)
+                            {
+                                iX = prev.Index;
+                                jX = cur.Index;
+                            }
+                            else
+                            {
+                                jX = prev.Index;
+                                iX = cur.Index;
+                            }
+                            break;
+                        }
+                        else
+                        {
+
+                        }
+                    }
             }
+
+            return iX * m - jX;
 
         }
     }

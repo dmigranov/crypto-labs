@@ -6,7 +6,7 @@ namespace Crypto
 {
     static class BSGSProgram
     {
-  
+
         static void Main(string[] args)
         {
             Console.WriteLine("a^x mod p = y");
@@ -22,7 +22,7 @@ namespace Crypto
             y = AskForBigIntegerInput($"Please enter y, y >= 0 and y < {p}", x => x >= 0 && x < p);
             Console.WriteLine($"y is {y}");
 
-            BSGSTools.SolveEquation(y, a, p);
+            Console.WriteLine($"x = {BSGSTools.SolveEquation(y, a, p)}");
         }
 
 
