@@ -22,6 +22,7 @@ namespace Crypto
 
             Console.WriteLine($"ALice signed her message and sent <m = {m}, r = {r}, s = {s}>");
 
+            
         }
 
         private static void SignMessage(BigInteger h, BigInteger g, BigInteger p, BigInteger x, out BigInteger r, out BigInteger s)
@@ -65,28 +66,16 @@ namespace Crypto
             return y * CryptoTools.ModuloPower(k, p - receiverPrivateKey - 1, p) % p;
         }
 
-        public static void SimulateElGamalExchange(BigInteger p, BigInteger g, BigInteger m)
-        {
-            Console.WriteLine($"Message is {m}");
-
-            BigInteger dB, cB;
-            cB = GenerateElGamalPrivateKey(g, p);
-            dB = GenerateElGamalPublicKey(g, cB, p);
-            Console.WriteLine($"Bob generated private key {cB} and public key {dB}");
-
-            BigInteger k, y;
-            EncryptMessage(g, dB, p, m, out y, out k);
-            Console.WriteLine($"Alice calculated k = {k} and y = {y} and sent them to Bob");
-
-            BigInteger w;
-            w = DecryptMessage(cB, p, y, k);
-            Console.WriteLine($"Bob deciphered message {w}");
-        }
-
-
         private static BigInteger CalculateHash(BigInteger m)
         {
             return m;
+        }
+
+        private static bool CheckSignature(BigInteger m, BigInteger r, BigInteger s, BigInteger p, BigIntger y)
+        {
+            BigInteger h = CalculateHash(m);
+            
+            return w == h;
         }
     }
 }
