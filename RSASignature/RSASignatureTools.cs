@@ -69,8 +69,9 @@ namespace Crypto
 
         private static bool CheckSignature(BigInteger m, BigInteger s, BigInteger d, BigInteger N)
         {
+            BigInteger h = CalculateHash(m);
             BigInteger w = CryptoTools.ModuloPower(s, d, N);
-            return w == m;
+            return w == h;
         }
     }
 }

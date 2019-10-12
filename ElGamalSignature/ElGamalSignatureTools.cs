@@ -20,6 +20,7 @@ namespace Crypto
             BigInteger r, s;
             SignMessage(h, g, p, x, out r, out s);           
 
+            Console.WriteLine($"ALice signed her message and sent <m = {m}, r = {r}, s = {s}>");
 
         }
 
