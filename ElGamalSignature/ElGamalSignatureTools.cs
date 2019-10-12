@@ -5,7 +5,7 @@ namespace Crypto
 {
     class ElGamalSignatureTools
     {
-        private static void SimulateElGamalSigning(BigInteger p, BigInteger g, BigInteger m)
+        public static void SimulateElGamalSigning(BigInteger p, BigInteger g, BigInteger m)
         {
             Console.WriteLine($"Alice gonna sign messsage m = {m} and send it to Bob");
             BigInteger x = CryptoTools.GenerateRandomBigInteger(2, p - 1);

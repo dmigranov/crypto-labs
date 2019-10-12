@@ -16,7 +16,7 @@ namespace Crypto
             Console.WriteLine($"g is {g}");
 
             m = AskForBigIntegerInput("Please enter m, x >= 0 and x < p", x => x >= 0 && x < p);
-            ElGamalTools.SimulateElGamalExchange(p, g, m);
+            ElGamalSignatureTools.SimulateElGamalSigning(p, g, m);
 
             Console.Write("Press any key to exit: ");
             Console.ReadKey();
