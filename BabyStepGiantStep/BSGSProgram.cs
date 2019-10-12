@@ -9,7 +9,20 @@ namespace Crypto
   
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("a^x mod p = y");
+
+            BigInteger p, a, y;
+
+            p = AskForBigIntegerInput("Please enter p, p > 1", x => x > 1);
+            Console.WriteLine($"p is {p}");
+
+            a = AskForBigIntegerInput($"Please enter a, a >= 0 and a < {p}", x => x >= 0 && x < p);
+            Console.WriteLine($"a is {a}");
+
+            y = AskForBigIntegerInput($"Please enter y, y >= 0 and y < {p}", x => x >= 0 && x < p);
+            Console.WriteLine($"y is {y}");
+
+            BSGSTools.SolveEquation(y, a, p);
         }
 
 
