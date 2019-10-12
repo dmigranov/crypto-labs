@@ -52,29 +52,6 @@ namespace Crypto
             s = (kRev * u) % (p - 1);
         }
 
-        private static BigInteger GenerateElGamalPrivateKey(BigInteger g, BigInteger p)
-        {
-            return CryptoTools.GenerateRandomBigInteger(2, p - 1);
-        }
-
-        private static BigInteger GenerateElGamalPublicKey(BigInteger g, BigInteger privateKey, BigInteger p)
-        {
-            return CryptoTools.ModuloPower(g, privateKey, p);
-        }
-
-        private static void EncryptMessage(BigInteger g, BigInteger receiverPublicKey, BigInteger p, BigInteger message, out BigInteger y, out BigInteger k)
-        {
-            BigInteger r = CryptoTools.GenerateRandomBigInteger(1, p - 1);
-
-            k = CryptoTools.ModuloPower(g, r, p);
-            y = (message * CryptoTools.ModuloPower(receiverPublicKey, r, p)) % p;
-        }
-
-        private static BigInteger DecryptMessage(BigInteger receiverPrivateKey, BigInteger p, BigInteger y, BigInteger k)
-        {
-            return y * CryptoTools.ModuloPower(k, p - receiverPrivateKey - 1, p) % p;
-        }
-
         private static BigInteger CalculateHash(BigInteger m)
         {
             return m;
