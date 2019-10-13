@@ -27,13 +27,13 @@ namespace Crypto
             {
                 BigInteger p, r, s, m, y, g;
 
-                p = AskForBigIntegerInput("Please enter p, p > 1", x => x > 1);
+                p = AskForBigIntegerInput("Please enter prime number p, p > 1", x => x > 1);
                 Console.WriteLine($"p is {p}");
 
                 g = AskForBigIntegerInput($"Please enter g, g > 1 and g < {p - 1}", x => x > 1 && x < p - 1);
                 Console.WriteLine($"g is {g}");
 
-                m = AskForBigIntegerInput($"Please enter m, m > 1 and m < {p}, h(m) = m", x => x > 1 && x < p);
+                m = AskForBigIntegerInput($"Please enter message m, m > 1 and m < {p}, h(m) = m", x => x > 1 && x < p);
                 Console.WriteLine($"m is {m}");
 
                 r = AskForBigIntegerInput($"Please enter r, r > 0 and r < {p}", x => x > 0 && x < p);
@@ -42,7 +42,7 @@ namespace Crypto
                 s = AskForBigIntegerInput($"Please enter s, r > 0 and r < {p - 1}", x => x > 0 && x < p - 1);
                 Console.WriteLine($"s is {s}");
 
-                y = AskForBigIntegerInput($"Please enter y, y > 0 and y < {p}", x => x > 0 && x < p);
+                y = AskForBigIntegerInput($"Please enter public key y, y > 0 and y < {p}", x => x > 0 && x < p);
                 Console.WriteLine($"y is {y}");
 
                 ElGamalSignatureTools.SimulateElGamalChecking(m, r, s, p, y, g);

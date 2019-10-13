@@ -23,6 +23,9 @@ namespace Crypto
             Console.WriteLine($"y is {y}");
 
             Console.WriteLine($"x = {BSGSTools.SolveEquation(y, a, p)}");
+
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
         }
 
 
