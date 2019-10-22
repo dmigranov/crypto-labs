@@ -21,8 +21,13 @@ namespace Crypto
 
             Console.WriteLine("START OF EXCHANGE");
 
+            BigInteger n = CryptoTools.GenerateRandomBigInteger(2, N);
+            BigInteger r, rInv;
+            CryptoTools.GenerateInverseNumbers(N, out r, out rInv);
+            BigInteger n_ = n * CryptoTools.ModuloPower(r, d, N) % N;
 
-
+            Console.WriteLine("Client wants to purchase an item.");
+            Console.WriteLine($"Client generated private n = {n}, random r = {r}: (r, N) = 1, then calculated n_ = (n * r^d) mod N = {n_} and sent it to bank");
 
 
         }
