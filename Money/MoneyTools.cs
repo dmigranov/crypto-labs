@@ -11,8 +11,10 @@ namespace Crypto
             Console.WriteLine($"Bank's private p is {p}");
             Console.WriteLine($"Bank's private q is {q}");
             BigInteger N = p * q, phi = (p - 1) * (q - 1);
-            Console.WriteLine($"Bank's public N is {q}");
+            Console.WriteLine($"Bank's public N is {N}, phi(N) = {phi}");
 
+            BigInteger c, d;
+            GenerateInverseNumbers
         }
     }
 }
