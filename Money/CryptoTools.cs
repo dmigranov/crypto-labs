@@ -41,7 +41,7 @@ namespace Crypto
             return result;
         }
 
-        private static void GenerateInverseNumbers(BigInteger mod, out BigInteger c, out BigInteger d)
+        public static void GenerateInverseNumbers(BigInteger mod, out BigInteger c, out BigInteger d)
         {
             BigInteger cCandidate, dCandidate, ret; ;
             do
