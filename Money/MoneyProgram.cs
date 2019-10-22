@@ -8,11 +8,13 @@ namespace Crypto
     {
         static void Main(string[] args)
         {
-            BigInteger p;
+            BigInteger p, q;
 
-            p = AskForBigIntegerInput("Please enter prime number p, p > 0", x => x > 0);
-            Console.WriteLine($"p is {p}");
+            p = AskForBigIntegerInput("Please enter prime number p, p > 1", x => x > 1);
 
+            q = AskForBigIntegerInput("Please enter prime number q, q > 1", x => x > 1);
+
+            MoneyTools.SimulateMoneyExchange(p, q);
         }
 
 
@@ -37,8 +39,4 @@ namespace Crypto
             return x;
         }
     }
-
-
-
-
 }
