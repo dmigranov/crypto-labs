@@ -29,7 +29,30 @@ namespace Crypto
             Console.WriteLine("Client wants to purchase an item.");
             Console.WriteLine($"Client generated private n = {n}, random r = {r}: (r, N) = 1, then calculated n_ = (n * r^d) mod N = {n_} and sent it to bank");
 
+            BigInteger s_ = CryptoTools.ModuloPower(n_, c, N);
+            Console.WriteLine($"Bank calculated s_ = {s_}, withdrew money from client's account and sent s_ to client");
 
+            BigInteger s = (s_ * rInv) % N;
+            Console.WriteLine($"Client calculated s = {s} - this is bank's signature. Client's banknote is <n = {n}, s = {s}>");
+
+            Console.WriteLine("Client sends banknote to shop");
+            CheckBanknoteSignature(n, s, d, N);
+
+        }
+
+        private static bool CheckBanknoteSignature(BigInteger n, BigInteger s, BigInteger d, BigInteger N)
+        {
+            if (n == CryptoTools.ModuloPower(s, d, N))
+                return true;
+            return false;
+        }
+
+        internal static void SimulateBanknoteChecking(BigInteger n, BigInteger s, BigInteger d, BigInteger N)
+        {
+            if (CheckBanknoteSignature(n, s, d, N) == true)
+                Console.WriteLine("Banknote signature is correct!");
+            else
+                Console.WriteLine("Banknote signature is not correct!");
         }
     }
 }
