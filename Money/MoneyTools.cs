@@ -36,7 +36,8 @@ namespace Crypto
             Console.WriteLine($"Client calculated s = {s} - this is bank's signature. Client's banknote is <n = {n}, s = {s}>");
 
             Console.WriteLine("Client sends banknote to shop");
-            CheckBanknoteSignature(n, s, d, N);
+            Console.WriteLine("Shop checks signature and sends banknote to bank to check if it was used");
+            SimulateBanknoteChecking(n, s, d, N);
 
         }
 
@@ -50,7 +51,7 @@ namespace Crypto
         internal static void SimulateBanknoteChecking(BigInteger n, BigInteger s, BigInteger d, BigInteger N)
         {
             if (CheckBanknoteSignature(n, s, d, N) == true)
-                Console.WriteLine("Banknote signature is correct!");
+                Console.WriteLine("Banknote signature is correct! Bank sends money to shop's account, shop gives item to client");
             else
                 Console.WriteLine("Banknote signature is not correct!");
         }
