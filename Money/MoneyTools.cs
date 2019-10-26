@@ -46,7 +46,6 @@ namespace Crypto
             }
         }
 
-
         private static bool BanknoteIsUsed(BigInteger n)
         {
             if (usedBanknotes.Exists(x => x == n))
