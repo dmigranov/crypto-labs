@@ -37,19 +37,10 @@ namespace Crypto
             Console.WriteLine("Client sends banknote to shop");
             Console.WriteLine("Shop checks signature and sends banknote to bank to check if it was used");
             SimulateBanknoteChecking(n, s, d, N);
-            SimulateCheckingIfBanknoteIsUsed(n);
         }
 
-        private static void SimulateCheckingIfBanknoteIsUsed(BigInteger n)
-        {
-            if(CheckIfBanknoteIsUsed(n))
-                Console.WriteLine("Banknote has already been used");
-            else
-                Console.WriteLine("Banknote hasn't been used, everything is ok");
 
-        }
-
-        private static Boolean CheckIfBanknoteIsUsed(BigInteger n)
+        private static bool BanknoteIsUsed(BigInteger n)
         {
             if (usedBanknotes.Exists(x => x == n))
                 return true;
@@ -67,7 +58,13 @@ namespace Crypto
         internal static void SimulateBanknoteChecking(BigInteger n, BigInteger s, BigInteger d, BigInteger N)
         {
             if (CheckBanknoteSignature(n, s, d, N) == true)
-                Console.WriteLine("Banknote signature is correct! Bank sends money to shop's account, shop gives item to client");
+            { 
+                Console.WriteLine("Banknote signature is correct!");
+                if (!BanknoteIsUsed(n))
+                    Console.WriteLine("Banknote hasn't been used! Bank sends money to shop's account, shop gives item to client");
+                else
+                    Console.WriteLine("Banknote has already been used!");
+            }
             else
                 Console.WriteLine("Banknote signature is not correct!");
         }
