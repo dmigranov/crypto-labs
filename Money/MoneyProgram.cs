@@ -16,7 +16,6 @@ namespace Crypto
 
             MoneyTools.SimulateMoneyExchange(p, q);
 
-
             Console.Write("Press any key to exit: ");
             Console.ReadKey();
         }

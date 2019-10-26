@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
-using System.Text;
 
 namespace Crypto
 {
     class MoneyTools
     {
+        private static List<BigInteger> usedBanknotes = new List<BigInteger>();
         public static void SimulateMoneyExchange(BigInteger p, BigInteger q)
         {
             Console.WriteLine($"Bank's private p is {p}");
@@ -36,7 +37,24 @@ namespace Crypto
             Console.WriteLine("Client sends banknote to shop");
             Console.WriteLine("Shop checks signature and sends banknote to bank to check if it was used");
             SimulateBanknoteChecking(n, s, d, N);
+            SimulateCheckingIfBanknoteIsUsed(n);
+        }
 
+        private static void SimulateCheckingIfBanknoteIsUsed(BigInteger n)
+        {
+            if(CheckIfBanknoteIsUsed(n))
+                Console.WriteLine("Banknote has already been used");
+            else
+                Console.WriteLine("Banknote hasn't been used, everything is ok");
+
+        }
+
+        private static Boolean CheckIfBanknoteIsUsed(BigInteger n)
+        {
+            if (usedBanknotes.Exists(x => x == n))
+                return true;
+            usedBanknotes.Add(n);
+            return false;
         }
 
         private static bool CheckBanknoteSignature(BigInteger n, BigInteger s, BigInteger d, BigInteger N)
