@@ -15,6 +15,10 @@ namespace Crypto
             q = AskForBigIntegerInput("Please enter prime number q, q > 1", x => x > 1);
 
             MoneyTools.SimulateMoneyExchange(p, q);
+
+
+            Console.Write("Press any key to exit: ");
+            Console.ReadKey();
         }
 
 

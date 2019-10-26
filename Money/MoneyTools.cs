@@ -17,8 +17,6 @@ namespace Crypto
             CryptoTools.GenerateInverseNumbers(phi, out c, out d);
             Console.WriteLine($"Bank's private c is {c} and public d is {d}");
 
-            //r и r^-1 тоже по GenerateInverseNumbers по модулю N
-
             Console.WriteLine("START OF EXCHANGE");
 
             BigInteger n = CryptoTools.GenerateRandomBigInteger(2, N);
