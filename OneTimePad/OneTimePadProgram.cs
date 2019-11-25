@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Numerics;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Crypto
@@ -14,14 +15,17 @@ namespace Crypto
             do
             {
                 BigInteger m = AskForBigIntegerInput($"Please enter message, 0 <= m < 2^n = {BigInteger.Pow(2, n)}", x => (x >= 0 && x < BigInteger.Pow(2, n)));
-                byte[] a = m.ToByteArray(true, true);
+                /*byte[] a = m.ToByteArray(true, true);
                 string s = Convert.ToString(a[0], 2).PadLeft(n % 8 != 0 ? n % 8 : 8, '0');
-                for(int i = 1; i < a.Length; i++)
+                for(int i = 1; i < (n % 8 == 0 ? n/8 : n/8 + 1); i++)
                 {
-                    s += Convert.ToString(a[i], 2).PadLeft(8, '0');
-                }
+                    if (i < a.Length)
+                        s += Convert.ToString(a[i], 2).PadLeft(8, '0');
+                    else
+                        s += "00000000";
+                }*/
                 
-                Console.WriteLine($"Your message is {s}");
+                Console.WriteLine($"Your message is {m.ToBinaryString().PadLeft(n % 8 != 0 ? n % 8 : 8, '0')}");
                 //OneTimePadTools.SendMessage(n, m);
             }
             while (true);
@@ -67,6 +71,38 @@ namespace Crypto
             }
 
             return x;
+        }
+
+
+        public static string ToBinaryString(this BigInteger bigint)
+        {
+            var bytes = bigint.ToByteArray();
+            var idx = bytes.Length - 1;
+
+            // Create a StringBuilder having appropriate capacity.
+            var base2 = new StringBuilder(bytes.Length * 8);
+
+            // Convert first byte to binary.
+            var binary = Convert.ToString(bytes[idx], 2);
+
+            // Ensure leading zero exists if value is positive.
+            /*if (binary[0] != '0' && bigint.Sign == 1)
+            {
+                base2.Append('0');
+            }*/
+
+
+
+            // Append binary string to StringBuilder.
+            base2.Append(binary);
+
+            // Convert remaining bytes adding leading zeros.
+            for (idx--; idx >= 0; idx--)
+            {
+                base2.Append(Convert.ToString(bytes[idx], 2).PadLeft(8, '0'));
+            }
+
+            return base2.ToString();
         }
     }
 }
