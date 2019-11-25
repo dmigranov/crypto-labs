@@ -2,14 +2,15 @@ using System;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace OneTimePad
+namespace Crypto
 {
     static class OneTimePadProgram
     {
         
         static void Main()
         {
-            
+            BigInteger n = AskForBigIntegerInput("Please enter n, n > 0", x => x > 0);
+
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
