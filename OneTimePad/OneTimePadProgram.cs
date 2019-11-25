@@ -21,11 +21,11 @@ namespace Crypto
                 {
                     if (i < a.Length)
                         s += Convert.ToString(a[i], 2).PadLeft(8, '0');
-                    else
-                        s += "00000000";
+
                 }*/
-                
-                Console.WriteLine($"Your message is {m.ToBinaryString().PadLeft(n % 8 != 0 ? n % 8 : 8, '0')}");
+                string str = m.ToBinaryString();
+                str = str.PadLeft(n, '0');
+                Console.WriteLine($"Your message is {str}");
                 //OneTimePadTools.SendMessage(n, m);
             }
             while (true);
@@ -76,7 +76,7 @@ namespace Crypto
 
         public static string ToBinaryString(this BigInteger bigint)
         {
-            var bytes = bigint.ToByteArray();
+            var bytes = bigint.ToByteArray(true, false);
             var idx = bytes.Length - 1;
 
             // Create a StringBuilder having appropriate capacity.
