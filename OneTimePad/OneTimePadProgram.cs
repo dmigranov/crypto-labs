@@ -12,8 +12,8 @@ namespace Crypto
             int n = AskForIntInput("Please enter n, n > 0", x => x > 0);
             do
             {
-                BigInteger m = AskForBigIntegerInput($"Please enter message, 0 <= m < 2^n = {BigInteger.Pow(2, n)}", x => x >= 0 && x < BigInteger.Pow(2, n));
-
+                BigInteger m = AskForBigIntegerInput($"Please enter message, 0 <= m < 2^n = {BigInteger.Pow(2, n)}", x => (x >= 0 && x < BigInteger.Pow(2, n)));
+                OneTimePadTools.SendMessage(n, m);
             }
             while (true);
         }
