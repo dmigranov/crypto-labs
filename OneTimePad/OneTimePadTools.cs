@@ -11,7 +11,7 @@ namespace Crypto
         internal static void SendMessage(int n, BigInteger m)
         {
             
-            Console.WriteLine("Your message is:");
+            Console.WriteLine($"Your message is m = {m}. Binary is:");
             Console.WriteLine(m.ToPaddedBinaryString(n));
 
             BigInteger k = GenerateKey(n);
@@ -19,16 +19,16 @@ namespace Crypto
             Console.WriteLine(k.ToPaddedBinaryString(n));
 
 
+
             BigInteger e = Encrypt(m, k);
             Console.WriteLine($"Encrypted message is e = {e}. Binary is:");
             Console.WriteLine(e.ToPaddedBinaryString(n));
 
 
+
             BigInteger d = Decrypt(e, k);
             Console.WriteLine($"Decrypted message is d = {d}. Binary is:");
             Console.WriteLine(d.ToPaddedBinaryString(n));
-
-
         }
 
         private static BigInteger Decrypt(BigInteger e, BigInteger k)
