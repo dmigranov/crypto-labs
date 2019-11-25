@@ -22,7 +22,7 @@ namespace Crypto
 
         private static BigInteger GenerateKey(int n)
         {
-            return CryptoTools.GenerateRandomBigInteger(0, BigInteger.Pow(2, n));
+            return CryptoTools.GenerateUnsignedRandomBigInteger(0, BigInteger.Pow(2, n));
         }
 
 
