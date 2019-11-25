@@ -15,9 +15,23 @@ namespace Crypto
             {
                 BigInteger m = AskForBigIntegerInput($"Please enter message, 0 <= m < 2^n = {BigInteger.Pow(2, n)}", x => (x >= 0 && x < BigInteger.Pow(2, n)));
                 byte[] a = m.ToByteArray();
-                string s = string.Join(" ", a.Reverse().Select(x => Convert.ToString(x, 2).PadLeft(8, '0')));
+
+                /*string selector(byte x)
+                {
+                    return Convert.ToString(x, 2).PadLeft(8, '0');
+                }
+
+
+                string s = string.Join(" ", a.Reverse().Select(selector));*/
+
+                string s = Convert.ToString(a[0], 2).PadLeft(n % 8 != 0 ? n % 8 : 8, '0');
+                for(int i = 1; i < a.Length; i++)
+                {
+                    s += Convert.ToString(a[i], 2).PadLeft(8, '0');
+                }
+                
                 Console.WriteLine($"Your message is {s}");
-                OneTimePadTools.SendMessage(n, m);
+                //OneTimePadTools.SendMessage(n, m);
             }
             while (true);
         }
