@@ -8,16 +8,37 @@ namespace Crypto
     static class OneTimePadTools
     {
 
-        internal static void SendMessage(int n, BigInteger msg)
+        internal static void SendMessage(int n, BigInteger m)
         {
             
             Console.WriteLine("Your message is:");
-            Console.WriteLine(msg.ToPaddedBinaryString(n));
+            Console.WriteLine(m.ToPaddedBinaryString(n));
 
             BigInteger k = GenerateKey(n);
             Console.WriteLine($"Secret key k = {k} generated. Binary is:");
             Console.WriteLine(k.ToPaddedBinaryString(n));
 
+
+            BigInteger e = Encrypt(m, k);
+            Console.WriteLine($"Encrypted message is e = {e}. Binary is:");
+            Console.WriteLine(e.ToPaddedBinaryString(n));
+
+
+            BigInteger d = Decrypt(e, k);
+            Console.WriteLine($"Decrypted message is d = {d}. Binary is:");
+            Console.WriteLine(d.ToPaddedBinaryString(n));
+
+
+        }
+
+        private static BigInteger Decrypt(BigInteger e, BigInteger k)
+        {
+            return e ^ k;
+        }
+
+        private static BigInteger Encrypt(BigInteger m, BigInteger k)
+        {
+            return m ^ k;
         }
 
         private static BigInteger GenerateKey(int n)
