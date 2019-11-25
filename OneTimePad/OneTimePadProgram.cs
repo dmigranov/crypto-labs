@@ -9,8 +9,34 @@ namespace Crypto
         
         static void Main()
         {
-            BigInteger n = AskForBigIntegerInput("Please enter n, n > 0", x => x > 0);
+            int n = AskForIntInput("Please enter n, n > 0", x => x > 0);
+            do
+            {
+                BigInteger m = AskForBigIntegerInput($"Please enter message, 0 <= m < 2^n = {BigInteger.Pow(2, n)}", x => x >= 0 && x < BigInteger.Pow(2, n));
 
+            }
+            while (true);
+        }
+
+        private static int AskForIntInput(string message, Predicate<int> cond)
+        {
+            int x;
+
+        Cycle:
+            Console.WriteLine(message);
+            string s = Console.ReadLine();
+            try
+            {
+                x = int.Parse(s);
+                if (!cond(x))
+                    goto Cycle;
+            }
+            catch (FormatException)
+            {
+                goto Cycle;
+            }
+
+            return x;
         }
 
         private static BigInteger AskForBigIntegerInput(string message, Predicate<BigInteger> cond)
