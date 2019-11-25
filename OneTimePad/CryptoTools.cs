@@ -41,6 +41,20 @@ namespace Crypto
             return result;
         }
 
+        public static BigInteger GenerateUnsignedRandomBigInteger(BigInteger minValue, BigInteger maxValue)
+        {
+            BigInteger result = 0;
+            do
+            {
+                int length = (int)Math.Ceiling(BigInteger.Log(maxValue, 2));
+                int numBytes = (int)Math.Ceiling(length / 8.0);
+                byte[] data = new byte[numBytes];
+                rand.NextBytes(data);
+                result = new BigInteger(data, isUnsigned: true);
+            } while (result >= maxValue || result < minValue);
+            return result;
+        }
+
         public static void GenerateInverseNumbers(BigInteger mod, out BigInteger c, out BigInteger d)
         {
             BigInteger cCandidate, dCandidate, ret; ;
