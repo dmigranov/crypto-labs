@@ -11,10 +11,12 @@ namespace Crypto
         internal static void SendMessage(int n, BigInteger msg)
         {
             
-            Console.WriteLine($"Your message is {msg.ToPaddedBinaryString(n)}");
+            Console.WriteLine("Your message is:");
+            Console.WriteLine(msg.ToPaddedBinaryString(n));
 
             BigInteger k = GenerateKey(n);
-            Console.WriteLine($"Secret key k = {k} generated");
+            Console.WriteLine($"Secret key k = {k} generated. Binary is:");
+            Console.WriteLine(k.ToPaddedBinaryString(n));
 
         }
 
