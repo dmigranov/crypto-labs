@@ -52,18 +52,19 @@ namespace Crypto
             var bytes = bigint.ToByteArray(true, false);
             var idx = bytes.Length - 1;
 
-            var base2 = new StringBuilder(bytes.Length * 8);
+            var builder = new StringBuilder(bytes.Length * 8);
 
             var binary = Convert.ToString(bytes[idx], 2);
 
-            base2.Append(binary);
+            builder.Append(binary);
 
             for (idx--; idx >= 0; idx--)
             {
-                base2.Append(Convert.ToString(bytes[idx], 2).PadLeft(8, '0'));
+                builder.Append(Convert.ToString(bytes[idx], 2).PadLeft(8, '0'));
             }
 
-            return base2.ToString();
+            return builder.ToString();
+           
         }
 
         public static string ToPaddedBinaryString(this BigInteger bigint, int n)
