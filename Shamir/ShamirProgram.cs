@@ -20,8 +20,8 @@ namespace Crypto
             try
             {
                 p = BigInteger.Parse(pString);
-                //SimulateShamirExchange(p);
-                SimulateShamirExchange(p, 15, 7, 6);
+                SimulateShamirExchange(p);
+                //SimulateShamirExchange(p, 15, 7, 6);
             }
             catch (FormatException e)
             {
